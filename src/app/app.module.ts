@@ -7,6 +7,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { GamePlayComponent } from './game-play/game-play.component';
+import { HttpClientModule } from '@angular/common/http'
+import { TrolltollService } from './game-play/trolltoll.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,10 @@ import { GamePlayComponent } from './game-play/game-play.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [TrolltollService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

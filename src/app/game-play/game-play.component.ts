@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TrolltollService } from './trolltoll.service';
+import { TrollToll } from './trolltoll'
 
 @Component({
   selector: 'app-game-play',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-play.component.scss']
 })
 export class GamePlayComponent implements OnInit {
-
-  constructor() { }
+  board = []
+  public units = [];
+  constructor(private _TrolltollService: TrolltollService) { }
 
   ngOnInit() {
+    this._TrolltollService.getUnits()
+      .subscribe(data => console.log(this.units=data))
+
+    this.board = this._TrolltollService.getBoard()
+  
   }
+
 
 }

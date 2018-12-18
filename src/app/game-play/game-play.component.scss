@@ -1,0 +1,12 @@
+.boardContainer{
+    display:flex;
+    flex-wrap: wrap;
+    max-width:600px;
+}
+.boardPiece{
+
+    min-height: 48px;
+    border: 1px solid black;
+    background-color: white;
+    min-width: 48px;
+}
