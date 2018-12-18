@@ -8,16 +8,13 @@ import { TrollToll } from './trolltoll'
   styleUrls: ['./game-play.component.scss']
 })
 export class GamePlayComponent implements OnInit {
-  board = []
   public units = [];
   constructor(private _TrolltollService: TrolltollService) { }
 
   ngOnInit() {
     this._TrolltollService.getUnits()
       .subscribe(data => console.log(this.units=data))
-
-    this.board = this._TrolltollService.getBoard()
-  
+      this._TrolltollService.getBoard()
   }
 
 

@@ -1,15 +1,5 @@
-<div class="mainPage">
-  <div class="boardArea">
-    <div class="boardContainer">
-      <div *ngFor="let position of board" id={{position.id}} class="boardPiece"></div>
-    </div>
-  </div>
-  <div class="inPlayCont">
-    <h2>In Play</h2>
-
-  </div>
-  <div class="pieceInfoCont">
-    <h2>Piece Information</h2>
+<div class="boardContainer">
+  <div *ngFor="let position of this._TrolltollService.board" id={{position.id}} class="boardPiece">
 
   </div>
 </div>

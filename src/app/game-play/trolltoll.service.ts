@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable'
   providedIn: 'root'
 })
 export class TrolltollService {
-
+  board = []
   constructor(private http: HttpClient) {}
   getUnits(): Observable<TrollToll[]>{
     return this.http.get<TrollToll[]>("https://troll-toll-db.herokuapp.com/units")
@@ -23,6 +23,7 @@ export class TrolltollService {
         })
         
     }
-    return newArr
+    this.board = newArr
+    return this.board
   }
 }
