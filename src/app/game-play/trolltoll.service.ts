@@ -20,7 +20,8 @@ export class TrolltollService {
       newArr.push({
         id: i + 1,
         piece: {},
-        player: null
+        player: null,
+        potentialMove: false
       })
 
     }
