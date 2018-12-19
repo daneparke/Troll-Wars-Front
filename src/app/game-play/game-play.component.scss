@@ -61,10 +61,16 @@
         margin-top: 1em;
     }
 }
+.pieceInfoTitle{
+    min-height:13%;
+    max-height:13%;
+}
 .pieceInfoDisplay{
     display:flex;
     flex-direction: column;
     width: 100%;
+    min-width:87%;
+    max-height:87%;
     img{
         align-self: center;
         height: 12em;
@@ -81,6 +87,14 @@
         margin-top: -.2em;
     }
     
+}
+.infoImage{
+    min-height:30%;
+    max-height:30%;
+}
+.infoText{
+    min-height:20em;
+    max-height:20em
 }
 
 .player1Unit{
