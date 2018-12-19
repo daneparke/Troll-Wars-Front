@@ -34,12 +34,27 @@ export class GamePlayComponent implements OnInit {
 
     if (this.selectPiecePhase) {
       this.startingPosition = Number(event.currentTarget.id)
-      let piece = this._TrolltollService.board.filter(position => position.id===this.startingPosition)
+     
       this.selectPiecePhase = false
       this.movePiecePhase = true
       console.log(this.startingPosition )
     } else if (this.movePiecePhase) {
-      console.log("move")
+      let piece = this._TrolltollService.board.filter(position => position.id===this.startingPosition)
+      console.log("move",Number(event.currentTarget.id))
+      let destination = this._TrolltollService.board.filter(position => position.id===Number(event.currentTarget.id))
+      console.log(piece,"piece", destination, "Dest")
+      destination[0].piece = piece[0].piece
+      destination[0].player = piece[0].player
+      this._TrolltollService.board.map(position =>{
+        if(position.id===this.startingPosition) {
+          return (
+            position.piece = {},
+            position.player = null
+          )
+
+        }
+      })
+      console.log(this._TrolltollService.board)
       this.movePiecePhase = false
       this.attackPiecePhase = true
     } else if (this.attackPiecePhase) {
@@ -47,6 +62,10 @@ export class GamePlayComponent implements OnInit {
       this.attackPiecePhase = false
       this.selectPiecePhase = true
     }
+
+  }
+
+  updateBoard() {
 
   }
 
