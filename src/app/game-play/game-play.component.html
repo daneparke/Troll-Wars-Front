@@ -1,5 +1,11 @@
-<div class="boardContainer">
-  <div *ngFor="let position of this._TrolltollService.board" id={{position.id}} class="boardPiece">
 
+
+
+<div class="boardContainer" *ngIf="start">
+  <div *ngFor="let position of this._TrolltollService.board" id={{position.id}} class="boardPiece">
+    {{position.piece.type==="Knight" ? "K" : ""}}
   </div>
+</div>
+<div>
+  <button (click)="this.setBoard()">Click me</button>
 </div>
