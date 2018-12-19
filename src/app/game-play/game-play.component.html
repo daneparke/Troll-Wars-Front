@@ -1,11 +1,27 @@
-
-
-
-<div class="boardContainer" *ngIf="start">
-  <div *ngFor="let position of this._TrolltollService.board" id={{position.id}} class="boardPiece">
-    {{position.piece.type==="Knight" ? "K" : ""}}
+<div class="mainPage">
+  <div class="boardArea">
+    <div class="boardContainer" *ngIf="start">
+      <div *ngFor="let position of this._TrolltollService.board" id={{position.id}}
+        class="boardPiece">
+        <!-- {{position.piece.type==="Knight" ? "K" : ""}} -->
+        <img src="{{position.piece.type=== 'Knight' ? position.piece.image : ''}}">
+      </div>
+    </div>
+    <div>
+      <button (click)="this.setBoard()">Click me</button>
+    </div>
   </div>
-</div>
-<div>
-  <button (click)="this.setBoard()">Click me</button>
+
+  <div class="inPlayCont">
+    <h2>In Play</h2>
+    <div *ngFor="let piece of units">
+      <div class="imgContInPlay">
+        <img src="{{piece.image}}">
+      </div>
+    </div>
+  </div>
+  <div class="pieceInfoCont">
+    <h2>Piece Information</h2>
+
+  </div>
 </div>

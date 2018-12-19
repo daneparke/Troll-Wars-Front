@@ -14,6 +14,9 @@
     border: 1px solid black;
     background-color: white;
     min-width: 3.3em;
+    img{
+        height: 3em;
+    }
 }
 .pieceInfoCont{
     width:20%;
@@ -39,6 +42,17 @@
     justify-content: center;
     height: auto;
     width: 50%;
-    
-
+}
+.imgContInPlay{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    height: auto;
+    // width: 5em;
+    img{
+        max-height: 8em;
+        margin-top: 1em;
+    }
 }
