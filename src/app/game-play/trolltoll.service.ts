@@ -9,19 +9,20 @@ import { Observable } from 'rxjs/Observable'
 })
 export class TrolltollService {
   board = []
-  constructor(private http: HttpClient) {}
-  getUnits(): Observable<TrollToll[]>{
+  constructor(private http: HttpClient) { }
+  getUnits(): Observable<TrollToll[]> {
     return this.http.get<TrollToll[]>("https://troll-toll-db.herokuapp.com/units")
   }
-  getBoard(){
+  getBoard() {
     let newArr = []
-    for(let i=0; i<144; i++){
-      
-        newArr.push({
-          id:i+1,
-          piece: {}
-        })
-        
+    for (let i = 0; i < 144; i++) {
+
+      newArr.push({
+        id: i + 1,
+        piece: {},
+        player: null
+      })
+
     }
     this.board = newArr
     return this.board
