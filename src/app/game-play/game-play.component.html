@@ -25,14 +25,18 @@
   <div class="pieceInfoCont">
     <h2>Piece Information</h2>
         <div class="pieceInfoDisplay">
-          <img class src="{{selectedPiece.image}}"/>
-          <h4>{{selectedPiece.type}}</h4>
-          <h6>Health: {{selectedPiece.health}}</h6>
-          <h6>Attack: {{selectedPiece.attack}}</h6>
-          <h6>Defence: {{selectedPiece.defence}}</h6>
-          <h6>Attack Range: {{selectedPiece.attackRange}}</h6>
-          <h6>Move Range: {{selectedPiece.moveRange}}</h6>
-          <h6>Cool Down: {{selectedPiece.coolDown}}</h6>
+          <div class="infoImage">
+            <img class src="{{selectedPiece.image}}"/>
+            <h4>{{selectedPiece.type}}</h4>
+          </div>
+          <div class="infoText">
+            <h6>Health: {{selectedPiece.health}}</h6>
+            <h6>Attack: {{selectedPiece.attack}}</h6>
+            <h6>Defence: {{selectedPiece.defence}}</h6>
+            <h6>Attack Range: {{selectedPiece.attackRange}}</h6>
+            <h6>Move Range: {{selectedPiece.moveRange}}</h6>
+            <h6>Cool Down: {{selectedPiece.coolDown}}</h6>
+          </div>
         </div>
   </div>
 </div>

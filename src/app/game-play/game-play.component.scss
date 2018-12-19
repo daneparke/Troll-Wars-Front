@@ -19,23 +19,28 @@
     }
 }
 .pieceInfoCont{
+    font-family: Endor;
     width:20%;
     border: .2em solid  rgba(0, 0, 0, .4);
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-color: rgba(192, 192, 192, .6); 
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    background-color: rgba(192, 192, 192, .8); 
     height: 40em;
     color:white;
     text-align: center;
+    h2{
+        font-size: 4em;
+    }
 
 }
 .inPlayCont{
+    font-family: Endor;
     height: 40em;
     color:white;
     text-align: center;
     width:20%;
     border: .2em solid  rgba(0, 0, 0, .4);
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-color: rgba(192, 192, 192, .6); 
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    background-color: rgba(192, 192, 192, .8); 
 }
 .boardArea{
     display: flex;
@@ -55,4 +60,25 @@
         max-height: 8em;
         margin-top: 1em;
     }
+}
+.pieceInfoDisplay{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    img{
+        align-self: center;
+        height: 12em;
+        margin-top: -.4em;
+
+    }
+    h4{
+        font-size: 3.4em;
+    }
+    h6{
+        margin-left:.1em;
+        text-align: left;
+        font-size: 3em;
+        margin-top: -.2em;
+    }
+    
 }
