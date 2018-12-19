@@ -18,7 +18,6 @@ export class GamePlayComponent implements OnInit {
       .subscribe(data => {
         this.units = data;
         this.start = true;
-
       })
     this._TrolltollService.getBoard()
     this.setBoard()
@@ -30,9 +29,7 @@ export class GamePlayComponent implements OnInit {
     let ranger = this.units.filter(unit => unit.id === 3)[0]
     let cleric = this.units.filter(unit => unit.id === 4)[0]
 
-
     this._TrolltollService.board.map(position => {
-      console.log("hi dane")
       if ((position.id === 129) || (position.id === 130) || (position.id === 131) || (position.id === 14) || (position.id === 15) || (position.id === 16)) {
         position.piece = knight
       }
@@ -47,9 +44,5 @@ export class GamePlayComponent implements OnInit {
       }
       return position
     })
-    console.log(this._TrolltollService.board)
   }
-
-
-
 }
