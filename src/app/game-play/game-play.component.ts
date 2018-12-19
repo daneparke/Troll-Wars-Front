@@ -9,6 +9,10 @@ import { TrolltollService } from './trolltoll.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GamePlayComponent implements OnInit {
+  selectPiecePhase: boolean = true
+  movePiecePhase: boolean = false
+  attackPiecePhase: boolean = false
+  startingPosition: number = null
   public units = [];
   start: boolean = false;
   public selectedPiece = {};
@@ -26,6 +30,26 @@ export class GamePlayComponent implements OnInit {
   populateInfo(piece) {
     this.selectedPiece = piece;
   }
+  movePiece(event) {
+
+    if (this.selectPiecePhase) {
+      this.startingPosition = Number(event.currentTarget.id)
+      let piece = this._TrolltollService.board.filter(position => position.id===this.startingPosition)
+      this.selectPiecePhase = false
+      this.movePiecePhase = true
+      console.log(this.startingPosition )
+    } else if (this.movePiecePhase) {
+      console.log("move")
+      this.movePiecePhase = false
+      this.attackPiecePhase = true
+    } else if (this.attackPiecePhase) {
+      console.log("attack")
+      this.attackPiecePhase = false
+      this.selectPiecePhase = true
+    }
+
+  }
+
   setBoard() {
 
     let knight = this.units.filter(unit => unit.id === 1)[0]
