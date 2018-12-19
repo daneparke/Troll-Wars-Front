@@ -4,8 +4,8 @@
       <div *ngFor="let position of this._TrolltollService.board" id={{position.id}}
         class="boardPiece">
         <!-- {{position.piece.type==="Knight" ? "K" : ""}} -->
-        <!-- <img src="{{position.piece.type === 'Knight' || 'Cleric' || 'Mage' || 'Ranger' ? position.piece.image : ''}}"> -->
-        <img src="{{position.piece == true ? position.piece.image : ''}}">
+        <img src="{{position.piece.type === 'Knight' || 'Cleric' || 'Mage' || 'Ranger' ? position.piece.image : ''}}">
+        <!-- <img src="{{position.piece == true ? position.piece.image : ''}}"> -->
 
       </div>
     </div>

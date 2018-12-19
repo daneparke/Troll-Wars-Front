@@ -30,17 +30,37 @@ export class GamePlayComponent implements OnInit {
     let cleric = this.units.filter(unit => unit.id === 4)[0]
 
     this._TrolltollService.board.map(position => {
-      if ((position.id === 129) || (position.id === 130) || (position.id === 131) || (position.id === 14) || (position.id === 15) || (position.id === 16)) {
+      if ((position.id === 129) || (position.id === 130) || (position.id === 131)) {
         position.piece = knight
+        position.player = 1
       }
-      else if ((position.id === 141) || (position.id === 144) || (position.id === 1) || (position.id === 4)) {
+      else if ((position.id === 14) || (position.id === 15) || (position.id === 16)) {
+        position.piece = knight
+        position.player = 2
+      }
+      else if ((position.id === 141) || (position.id === 144)) {
         position.piece = ranger
+        position.player = 1
       }
-      else if ((position.id === 143) || (position.id === 2)) {
+      else if ((position.id === 1) || (position.id === 4)) {
+        position.piece = ranger
+        position.player = 2
+      }
+      else if (position.id === 143) {
         position.piece = cleric
+        position.player = 1
       }
-      else if ((position.id === 142) || (position.id === 3)) {
+      else if (position.id === 2) {
+        position.piece = cleric
+        position.player = 2
+      }
+      else if (position.id === 142) {
         position.piece = mage
+        position.player = 1
+      }
+      else if (position.id === 3) {
+        position.piece = mage
+        position.player = 2
       }
       return position
     })
