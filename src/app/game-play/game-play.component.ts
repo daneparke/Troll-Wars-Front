@@ -11,6 +11,7 @@ import { TrolltollService } from './trolltoll.service';
 export class GamePlayComponent implements OnInit {
   public units = [];
   start: boolean = false;
+  public selectedPiece = {};
   constructor(private _TrolltollService: TrolltollService) { }
 
   ngOnInit() {
@@ -21,6 +22,9 @@ export class GamePlayComponent implements OnInit {
       })
     this._TrolltollService.getBoard()
     this.setBoard()
+  }
+  populateInfo(piece) {
+    this.selectedPiece = piece;
   }
   setBoard() {
 

@@ -4,9 +4,9 @@
       <div *ngFor="let position of this._TrolltollService.board" id={{position.id}}
         class="boardPiece">
         <!-- {{position.piece.type==="Knight" ? "K" : ""}} -->
-        <img src="{{position.piece.type === 'Knight' || 'Cleric' || 'Mage' || 'Ranger' ? position.piece.image : ''}}">
-        <!-- <img src="{{position.piece == true ? position.piece.image : ''}}"> -->
-
+        <!-- <img src="{{position.piece.type=== 'Knight' ? position.piece.image : ''}}"> -->
+        <img (click)="populateInfo(position.piece)" style="background-color: blue" src="{{position.piece.type=== 'Knight' ? position.piece.image : position.piece.type === 'Mage' ? position.piece.image : position.piece.type === 'Ranger' ? position.piece.image : position.piece.type === 'Cleric' ? position.piece.image : ''}}">
+        <!-- <img src="{{position.piece > 1 ? position.piece.image : ''}}"> -->
       </div>
     </div>
     <div>
@@ -24,6 +24,15 @@
   </div>
   <div class="pieceInfoCont">
     <h2>Piece Information</h2>
-
+        <div class="pieceInfoDisplay">
+          <img class src="{{selectedPiece.image}}"/>
+          <h4>{{selectedPiece.type}}</h4>
+          <h6>Health: {{selectedPiece.health}}</h6>
+          <h6>Attack: {{selectedPiece.attack}}</h6>
+          <h6>Defence: {{selectedPiece.defence}}</h6>
+          <h6>Attack Range: {{selectedPiece.attackRange}}</h6>
+          <h6>Move Range: {{selectedPiece.moveRange}}</h6>
+          <h6>Cool Down: {{selectedPiece.coolDown}}</h6>
+        </div>
   </div>
 </div>
