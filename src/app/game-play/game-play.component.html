@@ -1,11 +1,11 @@
 <div class="mainPage">
   <div class="boardArea">
     <div class="boardContainer" *ngIf="start">
-      <div *ngFor="let position of this._TrolltollService.board" id={{position.id}} (click)="movePiece($event)"
-        class="boardPiece {{position.player === 1 ? 'player1Unit' : position.player === 2 ? 'player2Unit' : ''}}{{position.potentialMove ? 'potential' : ''}}">
+      <div *ngFor="let position of this._TrolltollService.board" id={{position.id}}
+        (click)="movePiece($event)" class="boardPiece {{position.player === 1 ? 'player1Unit' : position.player === 2 ? 'player2Unit' : position.potentialMove ? 'potential' : ''}}">
         <!-- {{position.piece.type==="Knight" ? "K" : ""}} -->
         <!-- <img src="{{position.piece.type=== 'Knight' ? position.piece.image : ''}}"> -->
-        <img  (mouseover)="populateInfo(position.piece)" src="{{position.piece.type=== 'Knight' ? position.piece.image : position.piece.type === 'Mage' ? position.piece.image : position.piece.type === 'Ranger' ? position.piece.image : position.piece.type === 'Cleric' ? position.piece.image : ''}}">
+        <img (mouseover)="populateInfo(position.piece)" src="{{position.piece.type=== 'Knight' ? position.piece.image : position.piece.type === 'Mage' ? position.piece.image : position.piece.type === 'Ranger' ? position.piece.image : position.piece.type === 'Cleric' ? position.piece.image : ''}}">
       </div>
     </div>
     <div>
@@ -22,12 +22,12 @@
     </div>
   </div>
   <div class="pieceInfoCont">
-    <div class="pieceInfoTitle"> 
+    <div class="pieceInfoTitle">
       <h2>Piece Information</h2>
     </div>
     <div class="pieceInfoDisplay">
       <div class="infoImage">
-        <img class src="{{selectedPiece.image}}"/>
+        <img class src="{{selectedPiece.image}}" />
         <h4>{{selectedPiece.type}}</h4>
       </div>
       <div class="infoText">
