@@ -29,7 +29,7 @@ export class GamePlayComponent implements OnInit {
       })
     this._TrolltollService.getBoard()
     this.setBoard()
-    console.log(this.setBoard())
+    //console.log(this.setBoard())
   }
 
   isItMyTurn(piece) {
@@ -45,6 +45,7 @@ export class GamePlayComponent implements OnInit {
 
 
   movePiece(event) {
+    console.log(event, "thespecial one")
     let piece2 = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
     if (this.selectPiecePhase && this.isItMyTurn(piece2)) {
       this.startingPosition = Number(event.currentTarget.id)
@@ -130,6 +131,8 @@ export class GamePlayComponent implements OnInit {
         alert('nope')
       }
 
+    } else {
+      console.log('please select a valid move')
     }
     // this.selectPiecePhase = true
 
