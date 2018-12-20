@@ -16,6 +16,7 @@ export class GamePlayComponent implements OnInit {
   attackPiecePhase: boolean = false
   initiateAttackPiece: boolean = false
   startingPosition: number = null
+  populate: boolean = false
   currentPlayer = true
   public units = [];
   start: boolean = false;
@@ -84,7 +85,6 @@ export class GamePlayComponent implements OnInit {
       type: 'horizontalBar',
       data: {
           datasets: [{
-              //label: '# of Votes',
               data: [this.selectedPiece.health],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
@@ -443,6 +443,7 @@ export class GamePlayComponent implements OnInit {
   }
 
   setBoard() {
+    this.populate = true
     let knight1 = this.units.filter(unit => unit.id === 1)[0]
     let knight2 = this.units.filter(unit => unit.id === 2)[0]
     let knight3 = this.units.filter(unit => unit.id === 3)[0]
