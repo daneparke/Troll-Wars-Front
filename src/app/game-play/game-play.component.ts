@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TrolltollService } from './trolltoll.service';
+import { Chart } from 'chart.js'
 // import { currentId } from 'async_hooks';
 //import { TrollToll } from '@angular/core/'
 
@@ -18,7 +19,9 @@ export class GamePlayComponent implements OnInit {
   currentPlayer = true
   public units = [];
   start: boolean = false;
-  public selectedPiece = {};
+  public selectedPiece = null;
+  healthChart = []
+  attackChart = []
   constructor(private _TrolltollService: TrolltollService) { }
 
   ngOnInit() {
@@ -30,6 +33,7 @@ export class GamePlayComponent implements OnInit {
     this._TrolltollService.getBoard()
     this.setBoard()
     //console.log(this.setBoard())
+
   }
 
 
@@ -75,6 +79,79 @@ export class GamePlayComponent implements OnInit {
     return false
   }
 
+  populateInfo(piece) {
+    this.selectedPiece = piece;
+    this.healthChart = new Chart( 'healthChart', {
+      type: 'horizontalBar',
+      data: {
+          datasets: [{
+              //label: '# of Votes',
+              data: [this.selectedPiece.health],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          legend: {
+            display: false
+          },
+          tooltips: {
+              callbacks: {
+                label: function(tooltipItem) {
+                        return tooltipItem.yLabel;
+                }
+              }
+          },
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  });
+  this.attackChart = new Chart( 'attackChart', {
+    type: 'horizontalBar',
+    data: {
+        datasets: [{
+            //label: '# of Votes',
+            data: [this.selectedPiece.attack],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        legend: {
+          display: false
+        },
+        tooltips: {
+            callbacks: {
+              label: function(tooltipItem) {
+                      return tooltipItem.yLabel;
+              }
+            }
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+  }
 
   movePiece(event) {
     console.log(event, "thespecial one")
