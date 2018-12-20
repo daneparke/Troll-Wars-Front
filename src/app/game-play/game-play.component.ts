@@ -543,10 +543,6 @@ export class GamePlayComponent implements OnInit {
         position.piece = mage2
         position.player = 2
       }
-      if (position.id === 66) {
-        position.piece = knight5
-        position.player = 2
-      }
       return position
     })
   }
