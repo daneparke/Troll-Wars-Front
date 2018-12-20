@@ -13,6 +13,7 @@ export class GamePlayComponent implements OnInit {
   selectPiecePhase: boolean = true
   movePiecePhase: boolean = false
   attackPiecePhase: boolean = false
+  initiateAttackPiece: boolean = false
   startingPosition: number = null
   currentPlayer = true
   public units = [];
@@ -81,41 +82,45 @@ export class GamePlayComponent implements OnInit {
       else {
         alert('invalid move')
       }
-    } }
-    attackPiece(event){
+    } if (this.attackPiecePhase) {
+      console.log('attack piece phase')
+      this.startingPosition = Number(event.currentTarget.id)
+      let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
+      let y = this.idToCoordinate(piece[0].id)[1]
+      let x = this.idToCoordinate(piece[0].id)[0]
+      console.log(x, y, "xy")
+      this.attackDetector(piece, x, y)
+      console.log(this.startingPosition)
+      this.attackPiecePhase = false
+      this.initiateAttackPiece = true
 
-      if (this.attackPiecePhase) {
-        this.startingPosition = Number(event.currentTarget.id)
+    } else if (this.initiateAttackPiece) {
+      let cookie = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+      if (cookie[0].potentialAttack && (cookie[0].player !== this.currentPlayer || cookie[0].player !== null)) {
         let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-        let y = this.idToCoordinate(piece[0].id)[1]
-        let x = this.idToCoordinate(piece[0].id)[0]
-        console.log(x, y, "xy")
-        this.attackDetector(piece, x, y)
-        console.log(this.startingPosition)
-        
-        let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-        if (destination[0].potentialAttack && (destination[0].player !== this.currentPlayer || destination[0].player !== null)){
-          let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-          console.log(piece, "piece", destination, "Dest")
-          destination[0].piece = piece[0].piece
-          destination[0].player = piece[0].player
-          // this.currentPlayer = piece[0].player
-          console.log("player", destination[0].player)
-          console.log(destination[0].piece)
-          console.log("attack")
-          
-          
-          
-          
-        } 
-        console.log(" also attack")
-        
-        this.attackPiecePhase = false
-        this.selectPiecePhase = true
-        this.currentPlayer = !this.currentPlayer
+        let cookie = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+        console.log(piece, "piece", cookie, "Dest")
+        // cookie[0].piece = piece[0].piece
+        // cookie[0].player = piece[0].player
+        // this.currentPlayer = piece[0].player
+        // console.log("player", cookie[0].player)
+        // console.log(cookie[0].piece)
+        // console.log("attack")
+
       }
+      else {
+        alert('nope')
+      }
+
     }
-  
+    console.log(" also attack")
+
+    this.attackPiecePhase = false
+    // this.selectPiecePhase = true
+    this.currentPlayer = !this.currentPlayer
+
+  }
+
   idToCoordinate(id) {
     var arr = []
     for (let i = 12; (i * 12) >= id; i--) {
@@ -139,10 +144,10 @@ export class GamePlayComponent implements OnInit {
         console.log(this.idToCoordinate(position.id)[0], "x2", this.idToCoordinate(position.id)[1], "y2")
         position.potentialAttack = true
       }
-      
+
     })
   }
-  attackCount(piece1, piece2, x, y){
+  attackCount(piece1, piece2, x, y) {
     this._TrolltollService.board.map(position => {
 
     })
