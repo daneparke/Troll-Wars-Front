@@ -2,7 +2,7 @@
   <div class="boardArea">
     <div class="boardContainer" *ngIf="start">
       <div *ngFor="let position of this._TrolltollService.board" id={{position.id}}
-        (click)="movePiece($event)" class="boardPiece {{position.player === 1 ? 'player1Unit' : position.player === 2 ? 'player2Unit' : position.potentialMove ? 'potential' : ''}}">
+        (click)="movePiece($event)" class="boardPiece  {{position.player === 1 ? 'player1Unit' : position.player === 2 ? 'player2Unit' : position.potentialMove ? 'potential' : position.potentialAttack ? 'attack': ''}}">
         <!-- {{position.piece.type==="Knight" ? "K" : ""}} -->
         <!-- <img src="{{position.piece.type=== 'Knight' ? position.piece.image : ''}}"> -->
         <img (mouseover)="populateInfo(position.piece)" src="{{position.piece.type=== 'Knight' ? position.piece.image : position.piece.type === 'Mage' ? position.piece.image : position.piece.type === 'Ranger' ? position.piece.image : position.piece.type === 'Cleric' ? position.piece.image : ''}}">
