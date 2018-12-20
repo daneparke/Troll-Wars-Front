@@ -19,7 +19,7 @@ export class GamePlayComponent implements OnInit {
   currentPlayer = true
   public units = [];
   start: boolean = false;
-  public selectedPiece = {};
+  public selectedPiece = null;
   healthChart = []
   attackChart = []
   constructor(private _TrolltollService: TrolltollService) { }
