@@ -29,16 +29,23 @@ export class GamePlayComponent implements OnInit {
     this._TrolltollService.getBoard()
     this.setBoard()
   }
+
+  isItMyTurn(piece){
+    if((this.currentPlayer ? 1 : 2) === piece[0].player ){
+      return true
+    }
+    return false
+  }
+
   populateInfo(piece) {
     this.selectedPiece = piece;
   }
 
 
   movePiece(event) {
-    if (this.selectPiecePhase) {
-
-      this.startingPosition = Number(event.currentTarget.id)
-      let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
+    this.startingPosition = Number(event.currentTarget.id)
+    let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
+    if ((this.selectPiecePhase) && this.isItMyTurn(piece)) { 
       let y = this.idToCoordinate(piece[0].id)[1]
       let x = this.idToCoordinate(piece[0].id)[0]
       console.log(x, y, "xy")
