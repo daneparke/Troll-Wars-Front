@@ -32,15 +32,47 @@ export class GamePlayComponent implements OnInit {
     //console.log(this.setBoard())
   }
 
+
+  populateInfo(piece) {
+    this.selectedPiece = piece;
+  }
+
+  deselectUnit() {
+    this.selectPiecePhase = true
+    this.movePiecePhase = false
+    this._TrolltollService.board.map(position => {
+      position.potentialMove = false
+    })
+  }
+  noMove() {
+    this.movePiecePhase = false
+    this.initiateAttackPiece = true
+    this._TrolltollService.board.map(position => {
+      position.potentialMove = false
+    })
+    let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
+    let y = this.idToCoordinate(piece[0].id)[1]
+    let x = this.idToCoordinate(piece[0].id)[0]
+    console.log(x, y, "xy")
+    this.attackDetector(piece, x, y)
+  }
+  skipAttack() {
+    this.currentPlayer = !this.currentPlayer
+    this.selectPiecePhase = true
+    this.attackPiecePhase = false
+    this.initiateAttackPiece = false
+    this._TrolltollService.board.map(position => {
+      position.potentialAttack = false
+    })
+    this._TrolltollService.board.map(position => {
+      position.potentialMove = false
+    })
+  }
   isItMyTurn(piece) {
     if ((this.currentPlayer ? 1 : 2) === piece[0].player) {
       return true
     }
     return false
-  }
-
-  populateInfo(piece) {
-    this.selectedPiece = piece;
   }
 
 

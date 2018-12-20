@@ -49,17 +49,16 @@
     border: .2em solid  rgba(0, 0, 0, .4);
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     background-color: rgba(192, 192, 192, .8); 
+    .row{
+        justify-content: space-around
+    }
+    h3{
+        font-size: 3em;
+    }
     h2{
         font-size: 4em;
-        justify-content: center;
+        // justify-content: center;
     }
-    .row{
-        font-size: 2em;
-        justify-content: space-around;
-
-    }
-
-
 }
 .boardArea{
     display: flex;
@@ -130,4 +129,7 @@
 }
 .hidden{
     display:none
+}
+.red{
+    color:rgb(245, 115, 115);
 }
