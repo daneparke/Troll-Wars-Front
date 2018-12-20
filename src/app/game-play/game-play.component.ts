@@ -113,7 +113,8 @@ export class GamePlayComponent implements OnInit {
             if (position.id === enemyTarget[0].id) {
               return (
                 position.piece = {},
-                position.player = null
+                position.player = null,
+                this.selectedPiece = null
               )
             }
           })
