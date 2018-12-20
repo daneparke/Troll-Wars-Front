@@ -9,26 +9,30 @@
       </div>
     </div>
     <div>
-      <button class="closingButtons btn-dark cancelbtn {{start=== true ? 'hidden' : ''}}"  (click)="this.setBoard()">Set the Board</button>
+      <button class="closingButtons btn-dark cancelbtn {{start=== true ? 'hidden' : ''}}"
+        (click)="this.setBoard()">Set the Board</button>
     </div>
   </div>
-
   <div class="inPlayCont">
     <h2 class='row'>{{currentPlayer ? 'Player 1' : 'Player 2'}}</h2>
-    <div class='row'> Select a Unit</div>
     <div class='row'>
-      <div>Move Unit</div>
-      <button>Deselect</button>
+      <h3 class="{{selectPiecePhase ? 'red' : ''}}">Select a Unit</h3>
     </div>
     <div class='row'>
-      <div>Attack</div>
-      <button>No Attack</button>
+      <h3 class="{{movePiecePhase ? 'red' : ''}}">Move Unit</h3>
+      <button (click)="deselectUnit()">Deselect</button>
+      <button (click)="noMove()">No Move</button>
+
     </div>
     <div class='row'>
-      <button>End Turn</button>
+      <h3 class="{{initiateAttackPiece ? 'red' : ''}}">Attack</h3>
+      <button (click)="skipAttack()">No Attack</button>
     </div>
     <div class='row'>
-      <div>Timer</div>
+      <button (click)="skipAttack()">End Turn</button>
+    </div>
+    <div class='row'>
+      <h3>Timer</h3>
     </div>
 
     <!-- <div *ngFor="let piece of units">
