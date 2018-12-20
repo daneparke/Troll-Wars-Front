@@ -46,25 +46,31 @@ export class GamePlayComponent implements OnInit {
       console.log(this.startingPosition )
 
     } else if (this.movePiecePhase) {
-      let piece = this._TrolltollService.board.filter(position => position.id===this.startingPosition)
-      console.log("move",Number(event.currentTarget.id))
       let destination = this._TrolltollService.board.filter(position => position.id===Number(event.currentTarget.id))
-      console.log(piece,"piece", destination, "Dest")
-      destination[0].piece = piece[0].piece
-      destination[0].player = piece[0].player
-      this._TrolltollService.board.map(position =>{
-        position.potentialMove = false
-        if(position.id===this.startingPosition) {
-          return (
-            position.piece = {},
-            position.player = null
-          )
+        if(destination[0].potentialMove && destination[0].player ===null) {
+        let piece = this._TrolltollService.board.filter(position => position.id===this.startingPosition)
+        console.log("move",Number(event.currentTarget.id))
+        let destination = this._TrolltollService.board.filter(position => position.id===Number(event.currentTarget.id))
+        console.log(piece,"piece", destination, "Dest")
+        destination[0].piece = piece[0].piece
+        destination[0].player = piece[0].player
+        this._TrolltollService.board.map(position =>{
+          position.potentialMove = false
+          if(position.id===this.startingPosition) {
+            return (
+              position.piece = {},
+              position.player = null
+            )
 
-        }
-      })
-      console.log(this._TrolltollService.board)
-      this.movePiecePhase = false
-      this.attackPiecePhase = true
+          }
+        })
+        console.log(this._TrolltollService.board)
+        this.movePiecePhase = false
+        this.attackPiecePhase = true
+      }
+      else{
+        alert('invalid move')
+      }
     } else if (this.attackPiecePhase) {
       console.log("attack")
       this.attackPiecePhase = false
