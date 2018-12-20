@@ -45,7 +45,8 @@ export class GamePlayComponent implements OnInit {
 
 
   movePiece(event) {
-    if (this.selectPiecePhase) {
+    let piece2 = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+    if (this.selectPiecePhase && this.isItMyTurn(piece2)) {
       this.startingPosition = Number(event.currentTarget.id)
       let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
       let y = this.idToCoordinate(piece[0].id)[1]
