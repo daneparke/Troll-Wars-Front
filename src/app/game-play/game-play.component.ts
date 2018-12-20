@@ -29,10 +29,11 @@ export class GamePlayComponent implements OnInit {
       })
     this._TrolltollService.getBoard()
     this.setBoard()
+    console.log(this.setBoard())
   }
 
-  isItMyTurn(piece){
-    if((this.currentPlayer ? 1 : 2) === piece[0].player ){
+  isItMyTurn(piece) {
+    if ((this.currentPlayer ? 1 : 2) === piece[0].player) {
       return true
     }
     return false
@@ -45,11 +46,11 @@ export class GamePlayComponent implements OnInit {
 
   movePiece(event) {
     if (this.selectPiecePhase) {
-
       this.startingPosition = Number(event.currentTarget.id)
       let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
       let y = this.idToCoordinate(piece[0].id)[1]
       let x = this.idToCoordinate(piece[0].id)[0]
+      console.log(event.currentTarget, "full char")
       console.log(x, y, "xy")
       this.rangeDetector(piece, x, y)
       this.selectPiecePhase = false
@@ -97,17 +98,21 @@ export class GamePlayComponent implements OnInit {
       this.initiateAttackPiece = true
 
     } else if (this.initiateAttackPiece) {
-      let cookie = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-      if (cookie[0].potentialAttack && (cookie[0].player !== this.currentPlayer || cookie[0].player !== null)) {
+      let enemyTarget = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+      if (enemyTarget[0].potentialAttack && (enemyTarget[0].player !== this.currentPlayer || enemyTarget[0].player !== null)) {
         let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-        let cookie = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-        console.log(piece, "piece", cookie, "Dest")
-        // cookie[0].piece = piece[0].piece
-        // cookie[0].player = piece[0].player
-        // this.currentPlayer = piece[0].player
-        // console.log("player", cookie[0].player)
-        // console.log(cookie[0].piece)
-        // console.log("attack")
+        let enemyTarget = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+        console.log(piece, "piece", enemyTarget, "Dest")
+        if (enemyTarget[0].piece.id === enemyTarget[0].piece.id) {
+
+          enemyTarget[0].piece.health = enemyTarget[0].piece.health - piece[0].piece.attack
+          this.initiateAttackPiece = false
+          this.selectPiecePhase = true
+          this.currentPlayer = !this.currentPlayer
+          this._TrolltollService.board.map(position => {
+            position.potentialAttack = false
+          })
+        }
 
       }
       else {
@@ -115,11 +120,7 @@ export class GamePlayComponent implements OnInit {
       }
 
     }
-    console.log(" also attack")
-
-    this.attackPiecePhase = false
     // this.selectPiecePhase = true
-    this.currentPlayer = !this.currentPlayer
 
   }
 
@@ -156,47 +157,80 @@ export class GamePlayComponent implements OnInit {
   }
 
   setBoard() {
-
-    let knight = this.units.filter(unit => unit.id === 1)[0]
-    let mage = this.units.filter(unit => unit.id === 2)[0]
-    let ranger = this.units.filter(unit => unit.id === 3)[0]
-    let cleric = this.units.filter(unit => unit.id === 4)[0]
+    let knight1 = this.units.filter(unit => unit.id === 1)[0]
+    let knight2 = this.units.filter(unit => unit.id === 2)[0]
+    let knight3 = this.units.filter(unit => unit.id === 3)[0]
+    let knight4 = this.units.filter(unit => unit.id === 4)[0]
+    let knight5 = this.units.filter(unit => unit.id === 5)[0]
+    let knight6 = this.units.filter(unit => unit.id === 6)[0]
+    let mage1 = this.units.filter(unit => unit.id === 7)[0]
+    let mage2 = this.units.filter(unit => unit.id === 8)[0]
+    let ranger1 = this.units.filter(unit => unit.id === 9)[0]
+    let ranger2 = this.units.filter(unit => unit.id === 10)[0]
+    let ranger3 = this.units.filter(unit => unit.id === 11)[0]
+    let ranger4 = this.units.filter(unit => unit.id === 12)[0]
+    let cleric1 = this.units.filter(unit => unit.id === 13)[0]
+    let cleric2 = this.units.filter(unit => unit.id === 14)[0]
 
     this._TrolltollService.board.map(position => {
-      if ((position.id === 129) || (position.id === 130) || (position.id === 131)) {
-        position.piece = knight
+      if (position.id === 129) {
+        position.piece = knight1
         position.player = 1
       }
-      else if ((position.id === 14) || (position.id === 15) || (position.id === 16)) {
-        position.piece = knight
-        position.player = 2
-      }
-      else if ((position.id === 141) || (position.id === 144)) {
-        position.piece = ranger
+      if (position.id === 130) {
+        position.piece = knight2
         position.player = 1
       }
-      else if ((position.id === 1) || (position.id === 4)) {
-        position.piece = ranger
-        position.player = 2
-      }
-      else if (position.id === 143) {
-        position.piece = cleric
+      if (position.id === 131) {
+        position.piece = knight3
         position.player = 1
       }
-      else if (position.id === 2) {
-        position.piece = cleric
+      if (position.id === 14) {
+        position.piece = knight4
         position.player = 2
       }
-      else if (position.id === 142) {
-        position.piece = mage
+      if (position.id === 15) {
+        position.piece = knight5
+        position.player = 2
+      }
+      if (position.id === 16) {
+        position.piece = knight6
+        position.player = 2
+      }
+      if (position.id === 141) {
+        position.piece = ranger1
         position.player = 1
       }
-      else if (position.id === 3) {
-        position.piece = mage
+      if (position.id === 144) {
+        position.piece = ranger2
+        position.player = 1
+      }
+      if (position.id === 1) {
+        position.piece = ranger3
         position.player = 2
       }
-      else if (position.id === 66) {
-        position.piece = knight
+      if (position.id === 4) {
+        position.piece = ranger4
+        position.player = 2
+      }
+      if (position.id === 143) {
+        position.piece = cleric1
+        position.player = 1
+      }
+      if (position.id === 2) {
+        position.piece = cleric2
+        position.player = 2
+      }
+      if (position.id === 142) {
+        position.piece = mage1
+        position.player = 1
+      }
+      if (position.id === 3) {
+        position.piece = mage2
+        position.player = 2
+      }
+      if (position.id === 66) {
+        position.piece = knight5
         position.player = 2
       }
       return position
