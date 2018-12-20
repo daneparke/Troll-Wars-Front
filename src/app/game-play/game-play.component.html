@@ -1,5 +1,9 @@
 <div class="mainPage">
-  <div class="boardArea">
+    <div>
+      <button class="setButton btn-dark cancelbtn {{start=== true ? 'hidden' : ''}}"
+        (click)="this.setBoard()">Set the Board</button>
+    </div>
+  <div class="boardArea {{start=== true ? '' : 'hidden'}}">
     <div class="boardContainer" *ngIf="start">
       <div *ngFor="let position of this._TrolltollService.board" id={{position.id}}
         (click)="movePiece($event)" class="boardPiece  {{position.player === 1 ? 'player1Unit' : position.player === 2 ? 'player2Unit' : position.potentialMove ? 'potential' : position.potentialAttack ? 'attack': ''}}">
@@ -8,19 +12,15 @@
         <img (mouseover)="populateInfo(position.piece)" src="{{position.piece.type=== 'Knight' ? position.piece.image : position.piece.type === 'Mage' ? position.piece.image : position.piece.type === 'Ranger' ? position.piece.image : position.piece.type === 'Cleric' ? position.piece.image : ''}}">
       </div>
     </div>
-    <div>
-      <button class="closingButtons btn-dark cancelbtn {{start=== true ? 'hidden' : ''}}"
-        (click)="this.setBoard()">Set the Board</button>
-    </div>
   </div>
   <div class="inPlayCont">
-    <h2 class='row'>{{currentPlayer ? 'Player 1' : 'Player 2'}}</h2>
+    <h2 class='row middle'>{{currentPlayer ? 'Player 1' : 'Player 2'}}</h2>
     <div class='row'>
       <h3 class="{{selectPiecePhase ? 'red' : ''}}">Select a Unit</h3>
+      <button (click)="deselectUnit()">Deselect</button>
     </div>
     <div class='row'>
       <h3 class="{{movePiecePhase ? 'red' : ''}}">Move Unit</h3>
-      <button (click)="deselectUnit()">Deselect</button>
       <button (click)="noMove()">No Move</button>
 
     </div>
@@ -28,10 +28,10 @@
       <h3 class="{{initiateAttackPiece ? 'red' : ''}}">Attack</h3>
       <button (click)="skipAttack()">No Attack</button>
     </div>
-    <div class='row'>
+    <div class='row middle'>
       <button (click)="skipAttack()">End Turn</button>
     </div>
-    <div class='row'>
+    <div class='row middle'>
       <h3>Timer</h3>
     </div>
 

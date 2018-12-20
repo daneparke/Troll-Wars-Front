@@ -49,15 +49,34 @@
     border: .2em solid  rgba(0, 0, 0, .4);
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     background-color: rgba(192, 192, 192, .8); 
+    padding:3em;
     .row{
-        justify-content: space-around
+        justify-content: space-between;
     }
     h3{
         font-size: 3em;
     }
     h2{
         font-size: 4em;
+        text-align: center;
         // justify-content: center;
+    }
+    button{
+        min-width: 3em;
+        font-family: Endor;
+        font-size: 2.5em;
+        box-shadow: 0px 00px .1em .1em rgba(82, 82, 82, 0.7);
+        color:black;
+
+        &:hover{
+            -webkit-transform: scale(1.2);
+            transform: scale(1.1);
+            color:rgb(245, 115, 115);
+        
+    }
+    }
+    .middle{
+        justify-content: center;
     }
 }
 .boardArea{
@@ -78,6 +97,7 @@
         max-height: 8em;
         margin-top: 1em;
     }
+   
 }
 .pieceInfoTitle{
     min-height:13%;
@@ -127,9 +147,25 @@
 .player2Unit{
     background-color:rgba(167, 167, 0, 0.521)
 }
-.hidden{
-    display:none
-}
 .red{
     color:rgb(245, 115, 115);
+}
+.setButton{
+    min-width: 30%;
+    font-family: Endor;
+    font-size: 3em;
+    box-shadow: 0px 00px .1em .1em rgba(82, 82, 82, 0.797);
+    color:#BCBBB6;
+    margin-left: 5em;
+    margin-right: 9.3em;
+    
+    
+    &:hover{
+        -webkit-transform: scale(1.2);
+        transform: scale(1.1);
+        color:whitesmoke;
+    }
+}
+.hidden{
+    display:none;
 }
