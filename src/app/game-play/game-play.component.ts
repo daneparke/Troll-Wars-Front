@@ -105,8 +105,9 @@ export class GamePlayComponent implements OnInit {
         let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
         let enemyTarget = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
         console.log(piece, "piece", enemyTarget, "Dest")
-        // if (enemyTarget[0].piece.id === enemyTarget[0].piece.id) {
-        enemyTarget[0].piece.health = enemyTarget[0].piece.health - piece[0].piece.attack
+        if (enemyTarget[0].player !== piece[0].player) {
+          enemyTarget[0].piece.health = enemyTarget[0].piece.health - piece[0].piece.attack
+        }
         this.initiateAttackPiece = false
         this.selectPiecePhase = true
         this.currentPlayer = !this.currentPlayer
@@ -116,7 +117,7 @@ export class GamePlayComponent implements OnInit {
               return (
                 position.piece = {},
                 position.player = null,
-                this.selectedPiece = null
+                this.selectedPiece = {}
               )
             }
           })
@@ -124,7 +125,6 @@ export class GamePlayComponent implements OnInit {
         this._TrolltollService.board.map(position => {
           position.potentialAttack = false
         })
-        // }
 
       }
       else {
