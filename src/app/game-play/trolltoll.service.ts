@@ -21,7 +21,8 @@ export class TrolltollService {
         id: i + 1,
         piece: {},
         player: null,
-        potentialMove: false
+        potentialMove: false,
+        potentialAttack: false,
       })
 
     }

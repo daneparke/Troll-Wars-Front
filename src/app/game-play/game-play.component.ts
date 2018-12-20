@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TrolltollService } from './trolltoll.service';
+import { currentId } from 'async_hooks';
 //import { TrollToll } from '@angular/core/'
 
 @Component({
@@ -31,7 +32,7 @@ export class GamePlayComponent implements OnInit {
     this.selectedPiece = piece;
   }
   movePiece(event) {
-
+    var currentPlayer = null
     if (this.selectPiecePhase) {
 
       this.startingPosition = Number(event.currentTarget.id)
@@ -42,7 +43,6 @@ export class GamePlayComponent implements OnInit {
       this.rangeDetector(piece, x, y)
       this.selectPiecePhase = false
       this.movePiecePhase = true
-      //console.log(this.idToCoordinate(Number(event.currentTarget.id)), "coord")
       console.log(this.startingPosition)
 
     } else if (this.movePiecePhase) {
@@ -54,6 +54,7 @@ export class GamePlayComponent implements OnInit {
         console.log(piece, "piece", destination, "Dest")
         destination[0].piece = piece[0].piece
         destination[0].player = piece[0].player
+        currentPlayer = piece[0].player
         this._TrolltollService.board.map(position => {
           position.potentialMove = false
           if (position.id === this.startingPosition) {
@@ -72,11 +73,14 @@ export class GamePlayComponent implements OnInit {
         alert('invalid move')
       }
     } else if (this.attackPiecePhase) {
-      console.log("attack")
+      let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+      if (destination[0].potentialAttack && destination[0].player !== currentPlayer ){
+
+        console.log("attack")
+      }
       this.attackPiecePhase = false
       this.selectPiecePhase = true
     }
-
   }
   idToCoordinate(id) {
     var arr = []
@@ -92,6 +96,14 @@ export class GamePlayComponent implements OnInit {
       if ((piece[0].piece.moveRange >= (Math.abs(x - this.idToCoordinate(position.id)[0]) + Math.abs(y - this.idToCoordinate(position.id)[1])))) {
         console.log(this.idToCoordinate(position.id)[0], "x2", this.idToCoordinate(position.id)[1], "y2")
         position.potentialMove = true
+      }
+    })
+  }
+  attackDetector(piece, x, y) {
+    let potentialMoves = this._TrolltollService.board.map(position => {
+      if ((piece[0].piece.attackRange >= (Math.abs(x - this.idToCoordinate(position.id)[0]) + Math.abs(y - this.idToCoordinate(position.id)[1])))) {
+        console.log(this.idToCoordinate(position.id)[0], "x2", this.idToCoordinate(position.id)[1], "y2")
+        position.potentialAttack = true
       }
     })
   }
