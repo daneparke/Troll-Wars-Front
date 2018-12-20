@@ -44,9 +44,10 @@ export class GamePlayComponent implements OnInit {
 
 
   movePiece(event) {
-    this.startingPosition = Number(event.currentTarget.id)
-    let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-    if ((this.selectPiecePhase) && this.isItMyTurn(piece)) { 
+    if (this.selectPiecePhase) {
+
+      this.startingPosition = Number(event.currentTarget.id)
+      let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
       let y = this.idToCoordinate(piece[0].id)[1]
       let x = this.idToCoordinate(piece[0].id)[0]
       console.log(x, y, "xy")
@@ -56,6 +57,7 @@ export class GamePlayComponent implements OnInit {
       console.log(this.startingPosition)
 
     } else if (this.movePiecePhase) {
+      console.log("move2")
       let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
       if (destination[0].potentialMove && destination[0].player === null) {
         let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
