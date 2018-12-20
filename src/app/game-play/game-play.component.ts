@@ -35,28 +35,28 @@ export class GamePlayComponent implements OnInit {
     if (this.selectPiecePhase) {
 
       this.startingPosition = Number(event.currentTarget.id)
-      let piece = this._TrolltollService.board.filter(position => position.id===this.startingPosition)
+      let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
       let y = this.idToCoordinate(piece[0].id)[1]
       let x = this.idToCoordinate(piece[0].id)[0]
-      console.log(x,y, "xy")
-      this.rangeDetector(piece,x,y)
+      console.log(x, y, "xy")
+      this.rangeDetector(piece, x, y)
       this.selectPiecePhase = false
       this.movePiecePhase = true
       //console.log(this.idToCoordinate(Number(event.currentTarget.id)), "coord")
-      console.log(this.startingPosition )
+      console.log(this.startingPosition)
 
     } else if (this.movePiecePhase) {
-      let destination = this._TrolltollService.board.filter(position => position.id===Number(event.currentTarget.id))
-        if(destination[0].potentialMove && destination[0].player ===null) {
-        let piece = this._TrolltollService.board.filter(position => position.id===this.startingPosition)
-        console.log("move",Number(event.currentTarget.id))
-        let destination = this._TrolltollService.board.filter(position => position.id===Number(event.currentTarget.id))
-        console.log(piece,"piece", destination, "Dest")
+      let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+      if (destination[0].potentialMove && destination[0].player === null) {
+        let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
+        console.log("move", Number(event.currentTarget.id))
+        let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+        console.log(piece, "piece", destination, "Dest")
         destination[0].piece = piece[0].piece
         destination[0].player = piece[0].player
-        this._TrolltollService.board.map(position =>{
+        this._TrolltollService.board.map(position => {
           position.potentialMove = false
-          if(position.id===this.startingPosition) {
+          if (position.id === this.startingPosition) {
             return (
               position.piece = {},
               position.player = null
@@ -68,7 +68,7 @@ export class GamePlayComponent implements OnInit {
         this.movePiecePhase = false
         this.attackPiecePhase = true
       }
-      else{
+      else {
         alert('invalid move')
       }
     } else if (this.attackPiecePhase) {
@@ -79,37 +79,17 @@ export class GamePlayComponent implements OnInit {
 
   }
   idToCoordinate(id) {
-    var arr =[]
-    for (let i= 12; (i*12)>=id; i--) {
+    var arr = []
+    for (let i = 12; (i * 12) >= id; i--) {
       arr.push(i)
     }
-    var y = arr[arr.length-1]
-    var x = (id - ((y-1)*12))
-    return[x,y]
+    var y = arr[arr.length - 1]
+    var x = (id - ((y - 1) * 12))
+    return [x, y]
   }
-  rangeDetector(piece,x,y) {
-    // let potentialMovesLeft = this._TrolltollService.board.map(position => {
-    //   if((this.idToCoordinate(position.id)[1]===y) &&(this.idToCoordinate(position.id)[0] >= x - piece[0].piece.moveRange) && (this.idToCoordinate(position.id)[0]>=1) && (this.idToCoordinate(position.id)[0] <= x)) {
-    //     console.log(x - piece[0].piece.moveRange,this.idToCoordinate(position.id)[0], "left")
-    //   }
-    // })
-    // let potentialMovesRight = this._TrolltollService.board.map(position => {
-    //   if((this.idToCoordinate(position.id)[1]===y) &&(this.idToCoordinate(position.id)[0] <= x + piece[0].piece.moveRange) && (this.idToCoordinate(position.id)[0]<=12) && (this.idToCoordinate(position.id)[0] >= x)) {
-    //     console.log(x + piece[0].piece.moveRange,this.idToCoordinate(position.id)[0], "right")
-    //   }
-    // })
-    // let potentialMovesDown = this._TrolltollService.board.map(position => {
-    //   if((this.idToCoordinate(position.id)[0]===x) &&(this.idToCoordinate(position.id)[1] <= y + piece[0].piece.moveRange) && (this.idToCoordinate(position.id)[1]<=12) && (this.idToCoordinate(position.id)[1] >= y)) {
-    //     console.log(x + piece[0].piece.moveRange,this.idToCoordinate(position.id)[1], "down")
-    //   }
-    // })
-    // let potentialMovesUp = this._TrolltollService.board.map(position => {
-    //   if((this.idToCoordinate(position.id)[0]===x) &&(this.idToCoordinate(position.id)[1] >= y - piece[0].piece.moveRange) && (this.idToCoordinate(position.id)[1]>=1) && (this.idToCoordinate(position.id)[1] <= y)) {
-    //     console.log(x - piece[0].piece.moveRange,this.idToCoordinate(position.id)[1], "up")
-    //   }
-    // })
-    let potentialMovesDiagonalDownRight = this._TrolltollService.board.map(position => {
-      if((piece[0].piece.moveRange>=(Math.abs(x-this.idToCoordinate(position.id)[0])+ Math.abs(y-this.idToCoordinate(position.id)[1])))){
+  rangeDetector(piece, x, y) {
+    let potentialMoves = this._TrolltollService.board.map(position => {
+      if ((piece[0].piece.moveRange >= (Math.abs(x - this.idToCoordinate(position.id)[0]) + Math.abs(y - this.idToCoordinate(position.id)[1])))) {
         console.log(this.idToCoordinate(position.id)[0], "x2", this.idToCoordinate(position.id)[1], "y2")
         position.potentialMove = true
       }
