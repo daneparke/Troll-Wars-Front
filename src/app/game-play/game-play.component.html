@@ -14,12 +14,28 @@
   </div>
 
   <div class="inPlayCont">
-    <h2>In Play</h2>
-    <div *ngFor="let piece of units">
+    <h2 class='row'>{{currentPlayer ? 'Player 1' : 'Player 2'}}</h2>
+    <div class='row'> Select a Unit</div>
+    <div class='row'>
+      <div>Move Unit</div>
+      <button>Deselect</button>
+    </div>
+    <div class='row'>
+      <div>Attack</div>
+      <button>No Attack</button>
+    </div>
+    <div class='row'>
+      <button>End Turn</button>
+    </div>
+    <div class='row'>
+      <div>Timer</div>
+    </div>
+
+    <!-- <div *ngFor="let piece of units">
       <div class="imgContInPlay">
         <img src="{{piece.image}}">
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="pieceInfoCont">
     <div class="pieceInfoTitle">
