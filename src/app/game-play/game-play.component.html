@@ -30,13 +30,20 @@
         <img class src="{{selectedPiece.image}}" />
         <h4>{{selectedPiece.type}}</h4>
       </div>
+      <div>
+        
+      </div>
       <div class="infoText">
-        <h6>Health: {{selectedPiece.health}}</h6>
-        <h6>Attack: {{selectedPiece.attack}}</h6>
+        <h6>Health: <canvas id="healthChart" width="200" height="50"></canvas></h6>
+        <h6>Attack: <canvas id="attackChart" width="200" height="50"></canvas></h6>
         <h6>Defense: {{selectedPiece.defense}}</h6>
         <h6>Attack Range: {{selectedPiece.attackRange}}</h6>
         <h6>Move Range: {{selectedPiece.moveRange}}</h6>
         <h6>Cool Down: {{selectedPiece.coolDown}}</h6>
+        <!-- <h6>Defense: {{selectedPiece.defense}}</h6>
+        <h6>Attack Range: {{selectedPiece.attackRange}}</h6>
+        <h6>Move Range: {{selectedPiece.moveRange}}</h6>
+        <h6>Cool Down: {{selectedPiece.coolDown}}</h6> -->
       </div>
     </div>
   </div>
