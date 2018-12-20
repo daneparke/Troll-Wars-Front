@@ -27,6 +27,10 @@ export class GamePlayComponent implements OnInit {
   attackRangeChart = []
   moveRangeChart = []
   coolDownChart = []
+  playersLostPlayer1: number = 0
+  playersLostPlayer2: number = 0
+  gameOver: boolean = false
+  winner: string = ""
   constructor(private _TrolltollService: TrolltollService) { }
 
   ngOnInit() {
@@ -39,6 +43,16 @@ export class GamePlayComponent implements OnInit {
     this.setBoard()
     //console.log(this.setBoard())
 
+  }
+  checkGameOver() {
+    if (this.playersLostPlayer2 === 7) {
+      this.gameOver = true
+      this.winner = "Player 2 Wins!"
+    }
+    else if (this.playersLostPlayer1 === 7) {
+      this.gameOver = true
+      this.winner = "Player 1 Wins!"
+    }
   }
 
   deselectUnit() {
@@ -81,237 +95,237 @@ export class GamePlayComponent implements OnInit {
 
   populateInfo(piece) {
     this.selectedPiece = piece;
-    this.healthChart = new Chart( 'healthChart', {
+    this.healthChart = new Chart('healthChart', {
       type: 'horizontalBar',
       data: {
-          datasets: [{
-              data: [this.selectedPiece.health],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-              ],
-              borderColor: [
-                  'rgba(255,99,132,1)',
-              ],
-              borderWidth: 1
-          }]
+        datasets: [{
+          data: [this.selectedPiece.health],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+          ],
+          borderWidth: 1
+        }]
       },
       options: {
-          responsive: true,
-          legend: {
-            display: false
-          },
-          tooltips: {
-              callbacks: {
-                label: function(tooltipItem) {
-                        return tooltipItem.yLabel;
-                }
-              }
-          },
-          scales: {
-              xAxes: [{
-                  ticks: {
-                    beginAtZero: true,
-                    steps: 5,
-                    stepValue: 3,
-                    max: 15
-                  }
-              }]
+        responsive: true,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          callbacks: {
+            label: function (tooltipItem) {
+              return tooltipItem.yLabel;
+            }
           }
-      }
-    });
-    this.attackChart = new Chart( 'attackChart', {
-      type: 'horizontalBar',
-      data: {
-          datasets: [{
-              //label: '# of Votes',
-
-              data: [this.selectedPiece.attack],
-              backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-              ],
-              borderColor: [
-                'rgba(54, 162, 235, 1)',
-              ],
-              borderWidth: 1
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true,
+              steps: 5,
+              stepValue: 3,
+              max: 15
+            }
           }]
-      },
-      options: {
-          legend: {
-            display: false
-          },
-          tooltips: {
-              callbacks: {
-                label: function(tooltipItem) {
-                        return tooltipItem.yLabel;
-                }
-              }
-          },
-          scales: {
-              xAxes: [{
-                  ticks: {
-                    beginAtZero: true,
-                    steps: 5,
-                    stepValue: 2,
-                    max: 8
-                  }
-              }]
-          }
         }
-    });
-    this.defenseChart = new Chart( 'defenseChart', {
-      type: 'horizontalBar',
-      data: {
-          datasets: [{
-              //label: '# of Votes',
-
-              data: [this.selectedPiece.defense],
-              backgroundColor: [
-                'rgba(6, 165, 43, 0.2)',
-              ],
-              borderColor: [
-                'rgba(5, 135, 35, 1)',
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          legend: {
-            display: false
-          },
-          tooltips: {
-              callbacks: {
-                label: function(tooltipItem) {
-                        return tooltipItem.yLabel;
-                }
-              }
-          },
-          scales: {
-              xAxes: [{
-                  ticks: {
-                    beginAtZero: true,
-                    steps: 5,
-                    stepValue: 1,
-                    max: 5
-                  }
-              }]
-          }
       }
     });
-    this.attackRangeChart = new Chart( 'attackRangeChart', {
+    this.attackChart = new Chart('attackChart', {
       type: 'horizontalBar',
       data: {
-          datasets: [{
-              //label: '# of Votes',
-              data: [this.selectedPiece.attackRange],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-              ],
-              borderColor: [
-                  'rgba(255,99,132,1)',
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          responsive: true,
-          legend: {
-            display: false
-          },
-          tooltips: {
-              callbacks: {
-                label: function(tooltipItem) {
-                        return tooltipItem.yLabel;
-                }
-              }
-          },
-          scales: {
-              xAxes: [{
-                  ticks: {
-                    beginAtZero: true,
-                    steps: 4,
-                    stepValue: 2,
-                    max: 8
-                  }
-              }]
-          }
-      }
-    });
-    this.moveRangeChart = new Chart( 'moveRangeChart', {
-      type: 'horizontalBar',
-      data: {
-          datasets: [{
-              //label: '# of Votes',
+        datasets: [{
+          //label: '# of Votes',
 
-              data: [this.selectedPiece.moveRange],
-              backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-              ],
-              borderColor: [
-                'rgba(54, 162, 235, 1)',
-              ],
-              borderWidth: 1
-          }]
+          data: [this.selectedPiece.attack],
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.2)',
+          ],
+          borderColor: [
+            'rgba(54, 162, 235, 1)',
+          ],
+          borderWidth: 1
+        }]
       },
       options: {
-          legend: {
-            display: false
-          },
-          tooltips: {
-              callbacks: {
-                label: function(tooltipItem) {
-                        return tooltipItem.yLabel;
-                }
-              }
-          },
-          scales: {
-              xAxes: [{
-                  ticks: {
-                    beginAtZero: true,
-                    steps: 4,
-                    stepValue: 2,
-                    max: 8
-                  }
-              }]
+        legend: {
+          display: false
+        },
+        tooltips: {
+          callbacks: {
+            label: function (tooltipItem) {
+              return tooltipItem.yLabel;
+            }
           }
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true,
+              steps: 5,
+              stepValue: 2,
+              max: 8
+            }
+          }]
         }
+      }
     });
-    this.coolDownChart = new Chart( 'coolDownChart', {
+    this.defenseChart = new Chart('defenseChart', {
       type: 'horizontalBar',
       data: {
-          datasets: [{
-              //label: '# of Votes',
+        datasets: [{
+          //label: '# of Votes',
 
-              data: [this.selectedPiece.coolDown],
-              backgroundColor: [
-                'rgba(6, 165, 43, 0.2)',
-              ],
-              borderColor: [
-                'rgba(5, 135, 35, 1)',
-              ],
-              borderWidth: 1
-          }]
+          data: [this.selectedPiece.defense],
+          backgroundColor: [
+            'rgba(6, 165, 43, 0.2)',
+          ],
+          borderColor: [
+            'rgba(5, 135, 35, 1)',
+          ],
+          borderWidth: 1
+        }]
       },
       options: {
-          legend: {
-            display: false
-          },
-          tooltips: {
-              callbacks: {
-                label: function(tooltipItem) {
-                        return tooltipItem.yLabel;
-                }
-              }
-          },
-          scales: {
-              xAxes: [{
-                  ticks: {
-                    beginAtZero: true,
-                    steps: 4,
-                    stepValue: 1,
-                    max: 4
-                  }
-              }]
+        legend: {
+          display: false
+        },
+        tooltips: {
+          callbacks: {
+            label: function (tooltipItem) {
+              return tooltipItem.yLabel;
+            }
           }
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true,
+              steps: 5,
+              stepValue: 1,
+              max: 5
+            }
+          }]
+        }
+      }
+    });
+    this.attackRangeChart = new Chart('attackRangeChart', {
+      type: 'horizontalBar',
+      data: {
+        datasets: [{
+          //label: '# of Votes',
+          data: [this.selectedPiece.attackRange],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          callbacks: {
+            label: function (tooltipItem) {
+              return tooltipItem.yLabel;
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true,
+              steps: 4,
+              stepValue: 2,
+              max: 8
+            }
+          }]
+        }
+      }
+    });
+    this.moveRangeChart = new Chart('moveRangeChart', {
+      type: 'horizontalBar',
+      data: {
+        datasets: [{
+          //label: '# of Votes',
+
+          data: [this.selectedPiece.moveRange],
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.2)',
+          ],
+          borderColor: [
+            'rgba(54, 162, 235, 1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        tooltips: {
+          callbacks: {
+            label: function (tooltipItem) {
+              return tooltipItem.yLabel;
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true,
+              steps: 4,
+              stepValue: 2,
+              max: 8
+            }
+          }]
+        }
+      }
+    });
+    this.coolDownChart = new Chart('coolDownChart', {
+      type: 'horizontalBar',
+      data: {
+        datasets: [{
+          //label: '# of Votes',
+
+          data: [this.selectedPiece.coolDown],
+          backgroundColor: [
+            'rgba(6, 165, 43, 0.2)',
+          ],
+          borderColor: [
+            'rgba(5, 135, 35, 1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        tooltips: {
+          callbacks: {
+            label: function (tooltipItem) {
+              return tooltipItem.yLabel;
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true,
+              steps: 4,
+              stepValue: 1,
+              max: 4
+            }
+          }]
+        }
       }
     });
   }
@@ -386,13 +400,25 @@ export class GamePlayComponent implements OnInit {
         if (enemyTarget[0].piece.health <= 0) {
           this._TrolltollService.board.map(position => {
             if (position.id === enemyTarget[0].id) {
-              return (
-                position.piece = {},
-                position.player = null,
-                this.selectedPiece = {}
-              )
+              if (this.currentPlayer === true) {
+                return (
+                  position.piece = {},
+                  position.player = null,
+                  this.selectedPiece = {},
+                  this.playersLostPlayer2 = this.playersLostPlayer2 + 1
+                )
+              }
+              else {
+                return (
+                  position.piece = {},
+                  position.player = null,
+                  this.selectedPiece = {},
+                  this.playersLostPlayer1 = this.playersLostPlayer1 + 1
+                )
+              }
             }
           })
+          this.checkGameOver()
         }
         this._TrolltollService.board.map(position => {
           position.potentialAttack = false
@@ -443,6 +469,7 @@ export class GamePlayComponent implements OnInit {
   }
 
   setBoard() {
+    this.gameOver = false
     this.populate = true
     let knight1 = this.units.filter(unit => unit.id === 1)[0]
     let knight2 = this.units.filter(unit => unit.id === 2)[0]
