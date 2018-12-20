@@ -36,11 +36,6 @@ export class GamePlayComponent implements OnInit {
 
   }
 
-
-  populateInfo(piece) {
-    this.selectedPiece = piece;
-  }
-
   deselectUnit() {
     this.selectPiecePhase = true
     this.movePiecePhase = false
