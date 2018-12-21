@@ -101,7 +101,7 @@ export class GamePlayComponent implements OnInit {
         datasets: [{
           data: [this.selectedPiece.health],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.8)',
           ],
           borderColor: [
             'rgba(255,99,132,1)',
@@ -141,7 +141,7 @@ export class GamePlayComponent implements OnInit {
 
           data: [this.selectedPiece.attack],
           backgroundColor: [
-            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.8)',
           ],
           borderColor: [
             'rgba(54, 162, 235, 1)',
@@ -180,7 +180,7 @@ export class GamePlayComponent implements OnInit {
 
           data: [this.selectedPiece.defense],
           backgroundColor: [
-            'rgba(6, 165, 43, 0.2)',
+            'rgba(6, 165, 43, 0.8)',
           ],
           borderColor: [
             'rgba(5, 135, 35, 1)',
@@ -218,7 +218,7 @@ export class GamePlayComponent implements OnInit {
           //label: '# of Votes',
           data: [this.selectedPiece.attackRange],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.8)',
           ],
           borderColor: [
             'rgba(255,99,132,1)',
@@ -258,7 +258,7 @@ export class GamePlayComponent implements OnInit {
 
           data: [this.selectedPiece.moveRange],
           backgroundColor: [
-            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.8)',
           ],
           borderColor: [
             'rgba(54, 162, 235, 1)',
@@ -297,7 +297,7 @@ export class GamePlayComponent implements OnInit {
 
           data: [this.selectedPiece.coolDown],
           backgroundColor: [
-            'rgba(6, 165, 43, 0.2)',
+            'rgba(6, 165, 43, 0.8)',
           ],
           borderColor: [
             'rgba(5, 135, 35, 1)',
