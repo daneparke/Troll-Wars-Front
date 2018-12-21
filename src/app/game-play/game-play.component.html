@@ -1,12 +1,12 @@
 <div class="victoryCont {{gameOver === true ? '':'hidden'}}">
-  <button class="btn-dark" (click)="this.setBoard()">
-    <h1 class="victory row"><b>VICTORY!<br> Player 2 Wins!</b></h1>
+  <button class="btn-dark" routerLink=''>
+    <h1 class="victory row"><b>VICTORY!<br> {{winner}}!</b></h1>
   </button>
 </div>
 
 <div class="mainPage {{gameOver ? 'hidden': ''}}">
   <div>
-    <button class="setButton btn-dark cancelbtn {{start=== true ? 'hidden' : ''}}"
+    <button class="setButton btn-dark cancelbtn {{start === true ? 'hidden' : ''}}"
       (click)="this.setBoard()">Set the Board</button>
   </div>
   <div class="boardArea {{start=== true ? '' : 'hidden'}}">
