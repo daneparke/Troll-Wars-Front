@@ -80,10 +80,13 @@
         justify-content: center;
     }
     .purple{
-        color:rgba(175, 0, 175, 0.856);
+        color:rgba(128, 0, 128, 0.507);
+        text-shadow: 2px 0px black;
     }
     .yellow{
-        color:rgba(167, 167, 0, 0.863);
+        color:rgba(167, 167, 0, 0.521);
+        text-shadow: 2px 0px black;
+
     }
 }
 .boardArea{
@@ -173,6 +176,15 @@
 }
 .blue{
     color: rgba(0, 0, 255, 0.488);
+}
+.purple{
+    color:rgba(128, 0, 128, 0.507);
+    text-shadow: 2px 0px black;
+}
+.yellow{
+    color:rgba(167, 167, 0, 0.521);
+    text-shadow: 2px 0px black;
+
 }
 .setButton{
     min-width: 30%;

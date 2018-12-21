@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TrolltollService } from './trolltoll.service';
 import { Chart } from 'chart.js'
+import { ComponentFactoryResolver } from '@angular/core/src/render3';
 // import { currentId } from 'async_hooks';
 //import { TrollToll } from '@angular/core/'
 
@@ -460,10 +461,12 @@ export class GamePlayComponent implements OnInit {
       }
       if (position.id === 130) {
         position.piece = knight2
+        position.piece.player = 1
         position.player = 1
       }
       if (position.id === 131) {
         position.piece = knight3
+        position.piece.player = 1
         position.player = 1
       }
       if (position.id === 14) {

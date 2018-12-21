@@ -22,7 +22,7 @@
       ? 'Player 1' : 'Player 2'}}</h2>
     <div class='row'>
       <h3 class="
-      {{selectPiecePhase ? 'red' : ''}}">Select a Unit</h3>
+      {{selectPiecePhase ? currentPlayer ? 'purple' : 'yellow' : ''}}">Select a Unit</h3>
       <button (click)="
       deselectUnit()">Deselect</button>
     </div>
