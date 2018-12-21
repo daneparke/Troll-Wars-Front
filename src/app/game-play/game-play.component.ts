@@ -28,7 +28,7 @@ export class GamePlayComponent implements OnInit {
   moveRangeChart = []
   coolDownChart = []
   playersLostPlayer1: number = 0
-  playersLostPlayer2: number = 6
+  playersLostPlayer2: number = 0
   gameOver: boolean = false
   winner: string = ""
   constructor(private _TrolltollService: TrolltollService) { }
@@ -469,9 +469,6 @@ export class GamePlayComponent implements OnInit {
   }
 
   setBoard() {
-    if(this.gameOver == true){
-        this.start = false;
-    }else{
     this.gameOver = false
     this.populate = true
     let knight1 = this.units.filter(unit => unit.id === 1)[0]
@@ -552,5 +549,5 @@ export class GamePlayComponent implements OnInit {
       }
       return position
     })
-  }}
+  }
 }
