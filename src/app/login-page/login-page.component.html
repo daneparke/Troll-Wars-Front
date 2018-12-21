@@ -1,67 +1,62 @@
-<div class="btnCont">  
-  <!-- <button class= "btn loginBtn btn-dark">Login</button> -->
-  <button type="button" class="btn signUpBtn btn-dark" data-toggle="modal" data-target="#myModal1">Sign Up</button>
-      <div id="myModal1" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <form action="action_page.php" style="border:1px solid rgb(82, 82, 82)">
-                  <div class="container loginInfoCont">
-                    <h1>Sign Up</h1>
-                
-                    <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
-                
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
-                
-                    <label for="psw-repeat"><b>Repeat Password</b></label>
-                    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-                
-                    <label>
-                      <input type="checkbox" class="checkbox-red"checked="checked" name="remember" style="margin-bottom:15px;"> Remember me
-                    </label>
-                
-                    <p>By creating an account you agree to our <a href="#" style="color: purple">Terms & Privacy</a>.</p>
-                
-                    <div class="clearfix">
-                      <button type="button" class="close" data-dismiss="modal" class="closingButtons btn-dark cancelbtn">Cancel</button>
-                      <button type="submit" class="signUpBtn btn-dark closingButtons">Sign Up</button>
-                    </div>
-                  </div>
-                </form>
+<div class="btnCont">
+  <button type="button" class="btn signUpBtn btn-dark" data-toggle="modal"
+    data-target="#myModal1">Sign Up</button>
+  <div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <form action="action_page.php" style="border:1px solid rgb(82, 82, 82)">
+            <div class="container loginInfoCont">
+              <h1>Sign Up</h1>
+              <label for="email"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="email"
+                required>
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw"
+                required>
+              <label for="psw-repeat"><b>Repeat Password</b></label>
+              <input type="password" placeholder="Repeat Password" name="psw-repeat"
+                required>
+              <label>
+                <input type="checkbox" class="checkbox-red" checked="checked"
+                  name="remember" style="margin-bottom:15px;"> Remember me
+              </label>
+              <p>By creating an account you agree to our <a href="#" style="color: purple">Terms
+                  & Privacy</a>.</p>
+              <div class="clearfix">
+                <button type="button" class="close" data-dismiss="modal" class="closingButtons btn-dark cancelbtn">Cancel</button>
+                <button type="submit" class="signUpBtn btn-dark closingButtons">Sign
+                  Up</button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
-        </div>
-        <button class= "btn loginBtn btn-dark" data-toggle="modal" data-target="#myModal2">Login</button>
+      </div>
+    </div>
+  </div>
+  <button class="btn loginBtn btn-dark" data-toggle="modal" data-target="#myModal2">Login</button>
   <div id="myModal2" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <form action="action_page.php" style="border:1px solid rgb(82, 82, 82)">
-                <div class="container loginInfoCont">
-                  <h1>Login</h1>
-                  <hr>
-                  <label for="email"><b>Email</b></label>
-                  <input type="text" placeholder="Enter Email" name="email" required><br> 
-              
-                  <label for="psw"><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" name="psw" required>
-              
-                  <div class="clearfix">
-                    <button type="button" class="close" data-dismiss="modal" class="closingButtons btn-dark cancelbtn">Cancel</button>
-                    <button type="submit" class="loginBtn btn-dark closingButtons">Login</button>
-                  </div>
-                </div>
-              </form>
-          </div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <form action="action_page.php" style="border:1px solid rgb(82, 82, 82)">
+            <div class="container loginInfoCont">
+              <h1>Login</h1>
+              <hr>
+              <label for="email"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="email"
+                required><br>
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw"
+                required>
+              <div class="clearfix">
+                <button type="button" class="close" data-dismiss="modal" class="closingButtons btn-dark cancelbtn">Cancel</button>
+                <button type="submit" class="loginBtn btn-dark closingButtons">Login</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      </div>
-      <button routerLink="game" class= "btn playBtn btn-danger">Play</button>
-
+    </div>
+  </div>
+  <button routerLink="game" class="btn playBtn btn-danger">Play</button>

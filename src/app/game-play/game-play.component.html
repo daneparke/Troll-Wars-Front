@@ -18,10 +18,13 @@
     </div>
   </div>
   <div class="inPlayCont">
-    <h2 class='row middle'>{{currentPlayer ? 'Player 1' : 'Player 2'}}</h2>
+    <h2 class="row middle {{currentPlayer ? 'purple' : 'yellow'}}">{{currentPlayer
+      ? 'Player 1' : 'Player 2'}}</h2>
     <div class='row'>
-      <h3 class="{{selectPiecePhase ? 'red' : ''}}">Select a Unit</h3>
-      <button (click)="deselectUnit()">Deselect</button>
+      <h3 class="
+      {{selectPiecePhase ? 'red' : ''}}">Select a Unit</h3>
+      <button (click)="
+      deselectUnit()">Deselect</button>
     </div>
     <div class='row'>
       <h3 class="{{movePiecePhase ? 'red' : ''}}">Move Unit</h3>
@@ -38,12 +41,6 @@
     <div class='row middle'>
       <h3>Timer</h3>
     </div>
-
-    <!-- <div *ngFor="let piece of units">
-      <div class="imgContInPlay">
-        <img src="{{piece.image}}">
-      </div>
-    </div> -->
   </div>
   <div class="pieceInfoCont">
     <div class="pieceInfoTitle">

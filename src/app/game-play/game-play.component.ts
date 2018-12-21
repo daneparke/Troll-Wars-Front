@@ -41,8 +41,6 @@ export class GamePlayComponent implements OnInit {
       })
     this._TrolltollService.getBoard()
     this.setBoard()
-    //console.log(this.setBoard())
-
   }
   checkGameOver() {
     if (this.playersLostPlayer2 === 7) {
@@ -71,7 +69,6 @@ export class GamePlayComponent implements OnInit {
     let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
     let y = this.idToCoordinate(piece[0].id)[1]
     let x = this.idToCoordinate(piece[0].id)[0]
-    console.log(x, y, "xy")
     this.attackDetector(piece, x, y)
   }
   skipAttack() {
@@ -137,8 +134,6 @@ export class GamePlayComponent implements OnInit {
       type: 'horizontalBar',
       data: {
         datasets: [{
-          //label: '# of Votes',
-
           data: [this.selectedPiece.attack],
           backgroundColor: [
             'rgba(54, 162, 235, 0.2)',
@@ -176,8 +171,6 @@ export class GamePlayComponent implements OnInit {
       type: 'horizontalBar',
       data: {
         datasets: [{
-          //label: '# of Votes',
-
           data: [this.selectedPiece.defense],
           backgroundColor: [
             'rgba(6, 165, 43, 0.2)',
@@ -215,7 +208,6 @@ export class GamePlayComponent implements OnInit {
       type: 'horizontalBar',
       data: {
         datasets: [{
-          //label: '# of Votes',
           data: [this.selectedPiece.attackRange],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -254,8 +246,6 @@ export class GamePlayComponent implements OnInit {
       type: 'horizontalBar',
       data: {
         datasets: [{
-          //label: '# of Votes',
-
           data: [this.selectedPiece.moveRange],
           backgroundColor: [
             'rgba(54, 162, 235, 0.2)',
@@ -293,8 +283,6 @@ export class GamePlayComponent implements OnInit {
       type: 'horizontalBar',
       data: {
         datasets: [{
-          //label: '# of Votes',
-
           data: [this.selectedPiece.coolDown],
           backgroundColor: [
             'rgba(6, 165, 43, 0.2)',
@@ -331,31 +319,23 @@ export class GamePlayComponent implements OnInit {
   }
 
   movePiece(event) {
-    console.log(event, "thespecial one")
     let piece2 = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
     if (this.selectPiecePhase && this.isItMyTurn(piece2)) {
       this.startingPosition = Number(event.currentTarget.id)
       let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
       let y = this.idToCoordinate(piece[0].id)[1]
       let x = this.idToCoordinate(piece[0].id)[0]
-      console.log(event.currentTarget, "full char")
-      console.log(x, y, "xy")
       this.rangeDetector(piece, x, y)
       this.selectPiecePhase = false
       this.movePiecePhase = true
-      console.log(this.startingPosition)
 
     } else if (this.movePiecePhase) {
-      console.log("move2")
       let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
       if (destination[0].potentialMove && destination[0].player === null) {
         let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-        console.log("move", Number(event.currentTarget.id))
         let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-        console.log(piece, "piece", destination, "Dest")
         destination[0].piece = piece[0].piece
         destination[0].player = piece[0].player
-        // this.currentPlayer = piece[0].player
         this._TrolltollService.board.map(position => {
           position.potentialMove = false
           if (position.id === this.startingPosition) {
@@ -363,10 +343,8 @@ export class GamePlayComponent implements OnInit {
               position.piece = {},
               position.player = null
             )
-
           }
         })
-        console.log(this._TrolltollService.board)
         this.movePiecePhase = false
         this.attackPiecePhase = true
       }
@@ -374,14 +352,11 @@ export class GamePlayComponent implements OnInit {
         alert('invalid move')
       }
     } if (this.attackPiecePhase) {
-      console.log('attack piece phase')
       this.startingPosition = Number(event.currentTarget.id)
       let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
       let y = this.idToCoordinate(piece[0].id)[1]
       let x = this.idToCoordinate(piece[0].id)[0]
-      console.log(x, y, "xy")
       this.attackDetector(piece, x, y)
-      console.log(this.startingPosition)
       this.attackPiecePhase = false
       this.initiateAttackPiece = true
 
@@ -390,7 +365,6 @@ export class GamePlayComponent implements OnInit {
       if (enemyTarget[0].potentialAttack && (enemyTarget[0].player !== this.currentPlayer || enemyTarget[0].player !== null)) {
         let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
         let enemyTarget = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-        console.log(piece, "piece", enemyTarget, "Dest")
         if (enemyTarget[0].player !== piece[0].player) {
           enemyTarget[0].piece.health = enemyTarget[0].piece.health - piece[0].piece.attack
         }
@@ -428,12 +402,9 @@ export class GamePlayComponent implements OnInit {
       else {
         alert('nope')
       }
-
     } else {
       console.log('please select a valid move')
     }
-    // this.selectPiecePhase = true
-
   }
 
   idToCoordinate(id) {
@@ -448,7 +419,6 @@ export class GamePlayComponent implements OnInit {
   rangeDetector(piece, x, y) {
     this._TrolltollService.board.map(position => {
       if ((piece[0].piece.moveRange >= (Math.abs(x - this.idToCoordinate(position.id)[0]) + Math.abs(y - this.idToCoordinate(position.id)[1])))) {
-        console.log(this.idToCoordinate(position.id)[0], "x2", this.idToCoordinate(position.id)[1], "y2")
         position.potentialMove = true
       }
     })
@@ -456,15 +426,12 @@ export class GamePlayComponent implements OnInit {
   attackDetector(piece1, x, y) {
     this._TrolltollService.board.map(position => {
       if ((piece1[0].piece.attackRange >= (Math.abs(x - this.idToCoordinate(position.id)[0]) + Math.abs(y - this.idToCoordinate(position.id)[1])))) {
-        console.log(this.idToCoordinate(position.id)[0], "x2", this.idToCoordinate(position.id)[1], "y2")
         position.potentialAttack = true
       }
-
     })
   }
   attackCount(piece1, piece2, x, y) {
     this._TrolltollService.board.map(position => {
-
     })
   }
 
