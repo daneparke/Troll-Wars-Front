@@ -105,7 +105,11 @@
         max-height: 8em;
         margin-top: 1em;
     }
-   
+}
+.helpBtn{
+    display: flex;
+    align-content: center;
+    opacity: .8;
 }
 .pieceInfoTitle{
     min-height:13%;
@@ -223,4 +227,17 @@
 }
 .graphText {
     font-family: Deutsch;
+}
+.modal{
+    font-family: Deutsch;
+}
+.help{
+    display: flex;
+    justify-content: center;
+    button{
+        display: flex;
+        justify-content: center;
+        font-size: 1.2em;
+        width: 7em;
+    }
 }

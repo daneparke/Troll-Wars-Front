@@ -38,10 +38,125 @@
     <div class='row middle'>
       <button (click)="skipAttack()">End Turn</button>
     </div>
-    <div class='row middle'>
-      <h3>Timer</h3>
-      <button class="setButton btn-danger helpBtn">Help</button>
+    <div class='middle help'>
+      <button class="helpBtn btn-xs btn-danger" data-toggle="modal" data-target="#instructionsOverview">Help</button>
     </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="instructionsOverview" tabindex="-1" role="dialog" aria-labelledby="instructionsTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="instructionsTitle">Welcome to Troll Wars</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h4><b>Overview</b></h4>
+              <p>insert some stuff here</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#selectPlayerPhase">Next</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal for select player -->
+      <div class="modal fade" id="selectPlayerPhase" tabindex="-1" role="dialog" aria-labelledby="instructionsTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="instructionsTitle">Welcome to Troll Wars</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h4><b>Select Player Phase</b></h4>
+              <p>insert some stuff here</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#instructionsOverview">Back</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#movePlayerPhase">Next</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal for select player -->
+      <div class="modal fade" id="movePlayerPhase" tabindex="-1" role="dialog" aria-labelledby="instructionsTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="instructionsTitle">Welcome to Troll Wars</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h4><b>Move Player Phase</b></h4>
+              <p>insert some stuff here</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#selectPlayerPhase">Back</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#attackPlayerPhase">Next</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal for select player -->
+      <div class="modal fade" id="attackPlayerPhase" tabindex="-1" role="dialog" aria-labelledby="instructionsTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="instructionsTitle">Welcome to Troll Wars</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h4><b>Attack Player Phase</b></h4>
+              <p>insert some stuff here</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#movePlayerPhase">Back</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#gameEndPhase">Next</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal for select player -->
+      <div class="modal fade" id="gameEndPhase" tabindex="-1" role="dialog" aria-labelledby="instructionsTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="instructionsTitle">Welcome to Troll Wars</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h4><b>End of Game</b></h4>
+              <p>insert some stuff here</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#attackPlayerPhase">Back</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+    
   </div>
   <div class="pieceInfoCont">
     <div class="pieceInfoTitle">
