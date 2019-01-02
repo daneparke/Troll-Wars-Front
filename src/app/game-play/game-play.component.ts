@@ -77,6 +77,7 @@ export class GamePlayComponent implements OnInit {
     this.selectPiecePhase = true
     this.attackPiecePhase = false
     this.initiateAttackPiece = false
+    this.movePiecePhase = false
     this._TrolltollService.board.map(position => {
       position.potentialAttack = false
     })
