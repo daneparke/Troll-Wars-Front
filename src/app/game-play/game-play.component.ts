@@ -325,7 +325,7 @@ export class GamePlayComponent implements OnInit {
     movePiece(event) {
         let piece = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
         if (this.selectPiecePhase && piece[0].piece.activeCoolDown > 0) {
-            alert(`This ${piece[0].piece.type} Is On Cooldown For ${piece[0].piece.activeCoolDown / 2} More Turn. 
+            alert(`This ${piece[0].piece.type} Is On Cooldown For ${Math.floor(piece[0].piece.activeCoolDown / 2)} More Turn. 
             Please Select Viable Unit`)
         }
         else {

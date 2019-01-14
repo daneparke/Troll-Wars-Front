@@ -192,6 +192,9 @@
   <div class="pieceInfoCont">
     <div class="pieceInfoTitle">
       <h2>{{selectedPiece.type}}</h2>
+      <h6>
+        {{selectedPiece.activeCoolDown > 0 ? 'On Cooldown' : 'Available'}}
+      </h6>
     </div>
     <div class="pieceInfoDisplay ">
       <div class="infoImage row">
