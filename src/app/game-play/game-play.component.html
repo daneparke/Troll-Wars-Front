@@ -44,7 +44,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="instructionsOverview" tabindex="-1" role="dialog"
+    <div class="modal" id="instructionsOverview" tabindex="-1" role="dialog"
       aria-labelledby="instructionsTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -63,6 +63,32 @@
               getting to close. </p>
           </div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal"
+              data-toggle="modal" data-target="#cooldownPlayerPhase">Next</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for select player -->
+    <div class="modal" id="cooldownPlayerPhase" tabindex="-1" role="dialog"
+      aria-labelledby="instructionsTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="instructionsTitle">Troll Wars</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h4><b>Cool Down Trait</b></h4>
+            <p>Be careful to pay attention to the cool down on each unit. Once a unit is moved the cool down 
+            is initiated, you will not be able to move that unit again until it expires.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal"
+              data-toggle="modal" data-target="#instructionsOverview">Back</button>
             <button type="button" class="btn btn-dark" data-dismiss="modal"
               data-toggle="modal" data-target="#selectPlayerPhase">Next</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -85,7 +111,7 @@
             <h4><b>Select Player Phase</b></h4>
             <p>The first phase is the select player phase. Each player will be
               asked to select which unit they would like to move. When deciding
-              which unit to move, you can hover over each place and see the
+              which unit to move, you can hover over each unit and see the
               associated traits for each unit. Once a unit is selected you will
               see a blue shaded area appear. This area represents all possible
               moves for that unit.</p>
