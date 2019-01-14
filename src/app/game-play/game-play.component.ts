@@ -73,6 +73,7 @@ export class GamePlayComponent implements OnInit {
         this.attackDetector(piece, x, y)
     }
     skipAttack() {
+        this.cooldown()
         this.currentPlayer = !this.currentPlayer
         this.selectPiecePhase = true
         this.attackPiecePhase = false
@@ -84,6 +85,7 @@ export class GamePlayComponent implements OnInit {
         this._TrolltollService.board.map(position => {
             position.potentialMove = false
         })
+        this.startingPosition = null
     }
     isItMyTurn(piece) {
         if ((this.currentPlayer ? 1 : 2) === piece[0].player) {
@@ -321,102 +323,120 @@ export class GamePlayComponent implements OnInit {
     }
 
     movePiece(event) {
-        let piece2 = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-        if (this.selectPiecePhase && this.isItMyTurn(piece2)) {
-            this.startingPosition = Number(event.currentTarget.id)
-            let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-            let y = this.idToCoordinate(piece[0].id)[1]
-            let x = this.idToCoordinate(piece[0].id)[0]
-            this.rangeDetector(piece, x, y)
-            this.selectPiecePhase = false
-            this.movePiecePhase = true
-
-        } else if (this.movePiecePhase) {
-            let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-            if (destination[0].potentialMove && destination[0].player === null) {
+        let piece = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+        if (this.selectPiecePhase && piece[0].piece.activeCoolDown > 0) {
+            alert(`This ${piece[0].piece.type} Is On Cooldown For ${piece[0].piece.activeCoolDown / 2} More Turn. 
+            Please Select Viable Unit`)
+        }
+        else {
+            if (this.selectPiecePhase && this.isItMyTurn(piece)) {
+                this.startingPosition = Number(event.currentTarget.id)
                 let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-                let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-                destination[0].piece = piece[0].piece
-                destination[0].player = piece[0].player
-                this._TrolltollService.board.map(position => {
-                    position.potentialMove = false
-                    if (position.id === this.startingPosition) {
-                        return (
-                            position.piece = {},
-                            position.player = null
-                        )
-                    }
-                })
-                this.movePiecePhase = false
-                this.attackPiecePhase = true
-            }
-            else {
-                alert('invalid move')
-            }
-        } if (this.attackPiecePhase) {
-            this.startingPosition = Number(event.currentTarget.id)
-            let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-            let y = this.idToCoordinate(piece[0].id)[1]
-            let x = this.idToCoordinate(piece[0].id)[0]
-            this.attackDetector(piece, x, y)
-            this.attackPiecePhase = false
-            this.initiateAttackPiece = true
 
-        } else if (this.initiateAttackPiece) {
-            let enemyTarget = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-            let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-            if (enemyTarget[0].potentialAttack && (enemyTarget[0].player === this.currentPlayer || enemyTarget[0].player !== null)) {
-                if (piece[0].piece.type === 'Cleric') {
-                    console.log('heal', piece)
-                    enemyTarget[0].piece.health = enemyTarget[0].piece.health + piece[0].piece.attack
-                }
-                else {
-                    alert("Can't Attack Own Unit!")
-                }
-            }
-            if (enemyTarget[0].potentialAttack && (enemyTarget[0].player !== this.currentPlayer || enemyTarget[0].player !== null)) {
-                // let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-                let enemyTarget = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-                if (enemyTarget[0].player !== piece[0].player) {
-                    enemyTarget[0].piece.health = enemyTarget[0].piece.health - piece[0].piece.attack
-                }
-                this.initiateAttackPiece = false
-                this.selectPiecePhase = true
-                this.currentPlayer = !this.currentPlayer
-                if (enemyTarget[0].piece.health <= 0) {
+                let y = this.idToCoordinate(piece[0].id)[1]
+                let x = this.idToCoordinate(piece[0].id)[0]
+                this.rangeDetector(piece, x, y)
+                this.selectPiecePhase = false
+                this.movePiecePhase = true
+            } else if (this.movePiecePhase) {
+                let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+                if (destination[0].potentialMove && destination[0].player === null) {
+                    let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
+                    let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+                    destination[0].piece = piece[0].piece
+                    destination[0].player = piece[0].player
                     this._TrolltollService.board.map(position => {
-                        if (position.id === enemyTarget[0].id) {
-                            if (this.currentPlayer === true) {
-                                return (
-                                    position.piece = {},
-                                    position.player = null,
-                                    this.selectedPiece = {},
-                                    this.playersLostPlayer2 = this.playersLostPlayer2 + 1
-                                )
-                            }
-                            else {
-                                return (
-                                    position.piece = {},
-                                    position.player = null,
-                                    this.selectedPiece = {},
-                                    this.playersLostPlayer1 = this.playersLostPlayer1 + 1
-                                )
-                            }
+                        position.potentialMove = false
+                        if (position.id === this.startingPosition) {
+                            return (
+                                position.piece = {},
+                                position.player = null
+                            )
                         }
                     })
-                    this.checkGameOver()
+                    this.movePiecePhase = false
+                    this.attackPiecePhase = true
                 }
-                this._TrolltollService.board.map(position => {
-                    position.potentialAttack = false
-                })
+                else {
+                    alert('invalid move')
+                }
+            } if (this.attackPiecePhase) {
+                this.startingPosition = Number(event.currentTarget.id)
+                let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
+                let y = this.idToCoordinate(piece[0].id)[1]
+                let x = this.idToCoordinate(piece[0].id)[0]
+                this.attackDetector(piece, x, y)
+                this.attackPiecePhase = false
+                this.initiateAttackPiece = true
 
+            } else if (this.initiateAttackPiece) {
+                let enemyTarget = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
+                let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
+                if (enemyTarget[0].potentialAttack && enemyTarget[0].player !== null) {
+                    if (piece[0].piece.type === 'Cleric') {
+                        if (piece[0].player === enemyTarget[0].player) {
+                            enemyTarget[0].piece.health = enemyTarget[0].piece.health + piece[0].piece.attack + 4
+                            if (enemyTarget[0].piece.health > 15) {
+                                enemyTarget[0].piece.health = 15
+                            }
+                        }
+                        else {
+                            enemyTarget[0].piece.health = enemyTarget[0].piece.health - piece[0].piece.attack
+                        }
+                    }
+                    else if (enemyTarget[0].player !== piece[0].player) {
+                        enemyTarget[0].piece.health = enemyTarget[0].piece.health - piece[0].piece.attack
+                    }
+                    this.initiateAttackPiece = false
+                    this.selectPiecePhase = true
+                    this.currentPlayer = !this.currentPlayer
+                    if (enemyTarget[0].piece.health <= 0) {
+                        this._TrolltollService.board.map(position => {
+                            if (position.id === enemyTarget[0].id) {
+                                if (this.currentPlayer === true) {
+                                    return (
+                                        position.piece = {},
+                                        position.player = null,
+                                        this.selectedPiece = {},
+                                        this.playersLostPlayer2 = this.playersLostPlayer2 + 1
+                                    )
+                                }
+                                else {
+                                    return (
+                                        position.piece = {},
+                                        position.player = null,
+                                        this.selectedPiece = {},
+                                        this.playersLostPlayer1 = this.playersLostPlayer1 + 1
+                                    )
+                                }
+                            }
+                        })
+                        this.checkGameOver()
+                    }
+                    this._TrolltollService.board.map(position => {
+                        position.potentialAttack = false
+                    })
+                    this.cooldown()
+                }
+                else {
+                    alert('nope')
+                }
+            } else {
+                console.log('please select a valid move')
             }
-            else {
-                alert('nope')
-            }
-        } else {
-            console.log('please select a valid move')
         }
+    }
+    cooldown() {
+        let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
+        if (piece[0].piece.activeCoolDown === 0) {
+            piece[0].piece.activeCoolDown = (piece[0].piece.coolDown * 2)
+        }
+        this._TrolltollService.board.map(positions => {
+            if (positions.piece.activeCoolDown >= 1) {
+                positions.piece.activeCoolDown--
+                console.log(positions.piece)
+            }
+        })
     }
 
     idToCoordinate(id) {
