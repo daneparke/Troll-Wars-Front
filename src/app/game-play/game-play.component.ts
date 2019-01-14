@@ -73,6 +73,7 @@ export class GamePlayComponent implements OnInit {
         this.attackDetector(piece, x, y)
     }
     skipAttack() {
+        this.cooldown()
         this.currentPlayer = !this.currentPlayer
         this.selectPiecePhase = true
         this.attackPiecePhase = false
@@ -84,7 +85,7 @@ export class GamePlayComponent implements OnInit {
         this._TrolltollService.board.map(position => {
             position.potentialMove = false
         })
-        this.cooldown()
+        this.startingPosition = null
     }
     isItMyTurn(piece) {
         if ((this.currentPlayer ? 1 : 2) === piece[0].player) {
@@ -324,7 +325,8 @@ export class GamePlayComponent implements OnInit {
     movePiece(event) {
         let piece = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
         if (this.selectPiecePhase && piece[0].piece.activeCoolDown > 0) {
-            alert(piece[0].piece.activeCoolDown)
+            alert(`This ${piece[0].piece.type} Is On Cooldown For ${piece[0].piece.activeCoolDown / 2} More Turn. 
+            Please Select Viable Unit`)
         }
         else {
             if (this.selectPiecePhase && this.isItMyTurn(piece)) {
@@ -336,7 +338,6 @@ export class GamePlayComponent implements OnInit {
                 this.rangeDetector(piece, x, y)
                 this.selectPiecePhase = false
                 this.movePiecePhase = true
-
             } else if (this.movePiecePhase) {
                 let destination = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
                 if (destination[0].potentialMove && destination[0].player === null) {
@@ -375,6 +376,9 @@ export class GamePlayComponent implements OnInit {
                     if (piece[0].piece.type === 'Cleric') {
                         if (piece[0].player === enemyTarget[0].player) {
                             enemyTarget[0].piece.health = enemyTarget[0].piece.health + piece[0].piece.attack + 4
+                            if (enemyTarget[0].piece.health > 15) {
+                                enemyTarget[0].piece.health = 15
+                            }
                         }
                         else {
                             enemyTarget[0].piece.health = enemyTarget[0].piece.health - piece[0].piece.attack
@@ -424,15 +428,16 @@ export class GamePlayComponent implements OnInit {
     }
     cooldown() {
         let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-        piece[0].piece.activeCoolDown = (piece[0].piece.coolDown * 2) - 1
-        console.log(piece[0].piece.activeCoolDown)
-        this._TrolltollService.board.map(position => {
-            if (position.piece.activeCoolDown > 0) {
-                position.piece.activeCoolDown--
+        if (piece[0].piece.activeCoolDown === 0) {
+            piece[0].piece.activeCoolDown = (piece[0].piece.coolDown * 2)
+        }
+        this._TrolltollService.board.map(positions => {
+            if (positions.piece.activeCoolDown >= 1) {
+                positions.piece.activeCoolDown--
+                console.log(positions.piece)
             }
         })
     }
-
 
     idToCoordinate(id) {
         var arr = []

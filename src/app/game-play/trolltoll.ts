@@ -8,6 +8,7 @@ export interface TrollToll {
     attackRange: number;
     moveRange: number;
     coolDown: number;
+    activeCoolDown: number;
     price: number;
     image: string;
 }
