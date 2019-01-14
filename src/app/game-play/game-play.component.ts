@@ -287,7 +287,7 @@ export class GamePlayComponent implements OnInit {
             type: 'horizontalBar',
             data: {
                 datasets: [{
-                    data: [this.selectedPiece.coolDown],
+                    data: [Math.round((this.selectedPiece.activeCoolDown / 2))],
                     backgroundColor: [
                         'rgba(6, 165, 43, 0.8)',
                     ],
