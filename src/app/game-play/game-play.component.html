@@ -1,6 +1,6 @@
 <div class="victoryCont {{gameOver === true ? '':'hidden'}}">
   <button class="btn-dark" routerLink=''>
-    <h1 class="victory row"><b>VICTORY!<br> {{winner}}</b></h1>
+    <h1 class="victory row"><b>VICTORY!<br> {{winner}} </b></h1>
   </button>
 </div>
 
@@ -224,8 +224,8 @@
               width="200px" height="25px"></canvas></h6>
         </div>
         <div style="height:10vh; width:20vw" class="graphTextCont">
-          <h6 class="graphText row">Cool Down: <canvas id="coolDownChart" width="200px"
-              height="25px"></canvas></h6>
+          <h6 class="graphText row">Cool Down: {{selectedPiece.Cooldown}}<canvas
+              id="coolDownChart" width="200px" height="25px"></canvas></h6>
         </div>
       </div>
     </div>

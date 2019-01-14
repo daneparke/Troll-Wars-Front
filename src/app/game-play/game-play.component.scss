@@ -212,9 +212,11 @@
         box-shadow: 0px 00px .1em .1em rgba(218, 153, 32, 0.797);
         color:#BCBBB6;
         min-width: 50%;
-        padding-left:11.1%;
+        padding:5em;
         background-color: rgba(0, 0, 0, 0.527);
         border-radius: 5%;
+        display:flex;
+        justify-content: center;
     }
     .victory{
         font-family: Deutsch;
