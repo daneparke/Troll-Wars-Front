@@ -365,19 +365,16 @@ export class GamePlayComponent implements OnInit {
         } else if (this.initiateAttackPiece) {
             let enemyTarget = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
             let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-            if (enemyTarget[0].potentialAttack && (enemyTarget[0].player === this.currentPlayer || enemyTarget[0].player !== null)) {
+            if (enemyTarget[0].potentialAttack && enemyTarget[0].player !== null) {
                 if (piece[0].piece.type === 'Cleric') {
-                    console.log('heal', piece)
-                    enemyTarget[0].piece.health = enemyTarget[0].piece.health + piece[0].piece.attack
+                    if (piece[0].player === enemyTarget[0].player) {
+                        enemyTarget[0].piece.health = enemyTarget[0].piece.health + piece[0].piece.attack + 4
+                    }
+                    else {
+                        enemyTarget[0].piece.health = enemyTarget[0].piece.health - piece[0].piece.attack
+                    }
                 }
-                else {
-                    alert("Can't Attack Own Unit!")
-                }
-            }
-            if (enemyTarget[0].potentialAttack && (enemyTarget[0].player !== this.currentPlayer || enemyTarget[0].player !== null)) {
-                // let piece = this._TrolltollService.board.filter(position => position.id === this.startingPosition)
-                let enemyTarget = this._TrolltollService.board.filter(position => position.id === Number(event.currentTarget.id))
-                if (enemyTarget[0].player !== piece[0].player) {
+                else if (enemyTarget[0].player !== piece[0].player) {
                     enemyTarget[0].piece.health = enemyTarget[0].piece.health - piece[0].piece.attack
                 }
                 this.initiateAttackPiece = false
