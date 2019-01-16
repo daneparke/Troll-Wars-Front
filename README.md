@@ -5,16 +5,16 @@ As a launch in to the world of Angular, our team built and deployed our advanced
 ![Login Page of Troll Wars](./trollwars.png)
 
 ##Technology Used
-This project was generated with:
-    [Angular CLI](https://github.com/angular/angular-cli) - Web framework version 7.1.3
 
-    [Chart.js](https://www.chartjs.org/docs/latest/)- Library used to graph character stats.
+* [Angular CLI](https://github.com/angular/angular-cli) - Web framework version 7.1.3
 
-    [Java Script](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - Primary language
-    
-    [HTML 5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) - Markdown language
+* [Chart.js](https://www.chartjs.org/docs/latest/)- Library used to graph character stats.
 
-    [Sass](https://sass-lang.com/guide)- Style
+* [Java Script](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - Primary language
+
+* [HTML 5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) - Markdown language
+
+* [Sass](https://sass-lang.com/guide)- Style
 
 ##Authors
 
