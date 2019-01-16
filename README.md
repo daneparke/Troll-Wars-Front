@@ -18,9 +18,9 @@ As a launch in to the world of Angular, our team built and deployed our advanced
 
 ## Authors
 
-* **Dane Parke**
-* **Greg Forney**
-* **Phillip Hengemuhle**
+* [Dane Parke](https://github.com/daneparke/)
+* [Greg Forney](https://github.com/zipit145)
+* [Phillip Hengemuhle](https://github.com/phengemuhle)
 
 ## Deployment 
 * Front end deployed with Surge:
