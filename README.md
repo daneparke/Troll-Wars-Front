@@ -2,9 +2,9 @@
 # Troll Wars Front
 As a launch in to the world of Angular, our team built and deployed our advanced chess type game in one week. Our game includes an extra level to normal chess, where each unit has attack, defence, and cooldown. 
 
-![Login Page of Troll Wars](src/assets/trollWars.jpg)
+![Login Page of Troll Wars](./src/assets/trollWars.jpg)
 
-##Technology Used
+## Technology Used
 
 * [Angular CLI](https://github.com/angular/angular-cli) - Web framework version 7.1.3
 
@@ -16,7 +16,7 @@ As a launch in to the world of Angular, our team built and deployed our advanced
 
 * [Sass](https://sass-lang.com/guide)- Style
 
-##Authors
+## Authors
 
 * **Dane Parke**
 * **Greg Forney**
